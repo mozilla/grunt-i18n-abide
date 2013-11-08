@@ -1,0 +1,8 @@
+#: test/fixtures/jinja-keyword.html:1
+msgid "test"
+msgstr ""
+
+#: test/fixtures/jinja-keyword.html:2
+msgid "whatever"
+msgstr ""
+
