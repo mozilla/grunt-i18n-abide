@@ -93,7 +93,7 @@ module.exports = function (grunt) {
     }
 
     grunt.util.spawn({
-      cmd: './node_modules/.bin/jsxgettext',
+      cmd: path.join(__dirname, '../node_modules/.bin/jsxgettext'),
       args: args,
       opts: spawnOpts
     },
