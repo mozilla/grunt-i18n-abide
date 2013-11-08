@@ -32,21 +32,21 @@ module.exports = function(grunt) {
     jsxgettext: {
       basic: {
         src: ['test/fixtures/basic*.js'],
-        dest: 'test/tmp/basic.po',
+        dest: 'test/tmp/basic.pot',
         options: {
           language: 'JavaScript',
         }
       },
       jinja: {
         src: ['test/fixtures/jinja.html'],
-        dest: 'test/tmp/jinja.po',
+        dest: 'test/tmp/jinja.pot',
         options: {
           language: 'Jinja',
         }
       },
       jinjaKeyword: {
         src: ['test/fixtures/jinja-keyword.html'],
-        dest: 'test/tmp/jinja-keyword.po',
+        dest: 'test/tmp/jinja-keyword.pot',
         options: {
           language: 'Jinja',
           keyword: '_',
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
       },
       join1: {
         src: ['test/fixtures/join1.js'],
-        dest: 'test/tmp/join.po',
+        dest: 'test/tmp/join.pot',
         options: {
           language: 'JavaScript',
           join: true,
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
       },
       join2: {
         src: 'test/fixtures/join2.js',
-        dest: 'test/tmp/join.po',
+        dest: 'test/tmp/join.pot',
         options: {
           language: 'JavaScript',
           join: true,
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
       },
       sorted: {
         src: 'test/fixtures/sorted.js',
-        dest: 'test/tmp/sorted.po',
+        dest: 'test/tmp/sorted.pot',
         options: {
           language: 'JavaScript',
         }
