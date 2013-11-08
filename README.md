@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/muffinresearch/grunt-jsxgettext.png?branch=master)](https://travis-ci.org/muffinresearch/grunt-jsxgettext)
+
 # grunt-jsxgettext
 
 > Grunt plugin for running jsxgettext against your codebase. jsxgettext extracts strings from your JS
