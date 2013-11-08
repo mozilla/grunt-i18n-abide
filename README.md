@@ -24,16 +24,23 @@ grunt.loadNpmTasks('grunt-jsxgettext');
 ### Overview
 In your project's Gruntfile, add a section named `jsxgettext` to the data object passed into `grunt.initConfig()`.
 
+This example show two targets for extracting strings from JS and HTML. They both use the same destination.
+
 ```js
 grunt.initConfig({
   jsxgettext: {
-    target: {
-      src: ['test/fixtures/basic*.js'],
-      dest: 'test/tmp/basic.po',
+    js: {
+      src: 'lib/**/*.js',
+      dest: 'locale/templates/LC_MESSAGES/message.pot',
       options: {
         language: 'JavaScript',
-        sorted: false,
-        join: false,
+      }
+    },
+    html: {
+      src: 'templates/**/*.html',
+      dest: 'locale/templates/LC_MESSAGES/message.pot',
+      options: {
+        language: 'Jinja',
       }
     },
   },
@@ -65,27 +72,12 @@ Default value: `true`
 
 Whether to sort extracted strings.
 
-### Usage Examples
-#### Basic Config
-
-This example we are extracting from JS files in path/to/js and sorting and joining are turned off.
-
-```js
-grunt.initConfig({
-  jsxgettext: {
-    src: ['path/to/js/*.js'],
-    dest: 'test/tmp/stuff.po',
-    options: {
-      language: 'JavaScript',
-      sort: false,
-      join: false,
-    }
-  }
-})
-```
-
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+### Where to file bugs
+
+Bear in mind this code only wraps jsxgettext. If there's a problem with how grunt talks to jsxgettext then that's a problem with this package. However if the output is not correct (and it's not related to configuration) please file a bug on jsxgettext.
 
 ## Release History
 
