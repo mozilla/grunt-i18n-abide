@@ -2,6 +2,8 @@
 
 > Grunt plugin for running jsxgettext against your codebase.
 
+**Note: It's early days for this, and (despite the docs below) it's not in npm just yet until I iron out any kinks.**
+
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
