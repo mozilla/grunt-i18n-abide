@@ -28,7 +28,7 @@ module.exports = function (grunt) {
     var dest = path.normalize(this.data.dest);
     var destDir = path.dirname(dest);
 
-    if (filesSrc.length) {
+    if (filesSrc instanceof Array && filesSrc.length) {
       filesSrc.forEach(function (item) {
         if (!grunt.file.isFile(item)) {
           grunt.log.warn('Src file "' + item + '" not found.');

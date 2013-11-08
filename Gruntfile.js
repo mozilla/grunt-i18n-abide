@@ -10,6 +10,8 @@
 
 module.exports = function(grunt) {
 
+  var projectLocales = ['en_US', 'fr', 'es'];
+
   // Project configuration.
   grunt.initConfig({
     jshint: {
@@ -25,61 +27,70 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      test: ['test/tmp/*'],
+      test: ['tests/tmp/*'],
     },
 
     // Configuration to be run (and then tested).
     jsxgettext: {
       basic: {
-        src: ['test/fixtures/basic*.js'],
-        dest: 'test/tmp/basic.pot',
+        src: ['tests/fixtures/basic*.js'],
+        dest: 'tests/tmp/basic.pot',
         options: {
           language: 'JavaScript',
         }
       },
       jinja: {
-        src: ['test/fixtures/jinja.html'],
-        dest: 'test/tmp/jinja.pot',
+        src: ['tests/fixtures/jinja.html'],
+        dest: 'tests/tmp/jinja.pot',
         options: {
           language: 'Jinja',
         }
       },
       jinjaKeyword: {
-        src: ['test/fixtures/jinja-keyword.html'],
-        dest: 'test/tmp/jinja-keyword.pot',
+        src: ['tests/fixtures/jinja-keyword.html'],
+        dest: 'tests/tmp/jinja-keyword.pot',
         options: {
           language: 'Jinja',
           keyword: '_',
         }
       },
       join1: {
-        src: ['test/fixtures/join1.js'],
-        dest: 'test/tmp/join.pot',
+        src: ['tests/fixtures/join1.js'],
+        dest: 'tests/tmp/join.pot',
         options: {
           language: 'JavaScript',
           join: true,
         }
       },
       join2: {
-        src: 'test/fixtures/join2.js',
-        dest: 'test/tmp/join.pot',
+        src: 'tests/fixtures/join2.js',
+        dest: 'tests/tmp/join.pot',
         options: {
           language: 'JavaScript',
           join: true,
         }
       },
       sorted: {
-        src: 'test/fixtures/sorted.js',
-        dest: 'test/tmp/sorted.pot',
+        src: 'tests/fixtures/sorted.js',
+        dest: 'tests/tmp/sorted.pot',
         options: {
           language: 'JavaScript',
         }
       }
     },
 
+    // Configuration to be run (and then tested).
+    jsxcreate: {
+      options: {
+        template: 'tests/fixtures/messages.pot',
+        locales: projectLocales,
+        baseDir: 'tests/tmp',
+      }
+    },
+
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js'],
+      tests: ['tests/*_test.js'],
     },
 
   });
@@ -101,6 +112,7 @@ module.exports = function(grunt) {
     'jsxgettext:join1',
     'jsxgettext:join2',
     'jsxgettext:sorted',
+    'jsxcreate',
     'nodeunit'
   ]);
 
