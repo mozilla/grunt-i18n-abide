@@ -1,6 +1,7 @@
 # grunt-jsxgettext
 
-> Grunt plugin for running jsxgettext against your codebase.
+> Grunt plugin for running jsxgettext against your codebase. jsxgettext extracts strings from your JS
+and template files (EJS/Jinja (nunjucks)) to a pot format.
 
 **Note: It's early days for this, and (despite the docs below) it's not in npm just yet until I iron out any kinks.**
 
@@ -31,14 +32,14 @@ grunt.initConfig({
   jsxgettext: {
     js: {
       src: 'lib/**/*.js',
-      dest: 'locale/templates/LC_MESSAGES/message.pot',
+      dest: 'locale/templates/LC_MESSAGES/messages.pot',
       options: {
         language: 'JavaScript',
       }
     },
     html: {
       src: 'templates/**/*.html',
-      dest: 'locale/templates/LC_MESSAGES/message.pot',
+      dest: 'locale/templates/LC_MESSAGES/messages.pot',
       options: {
         language: 'Jinja',
       }
