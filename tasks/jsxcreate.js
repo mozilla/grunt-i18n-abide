@@ -8,17 +8,9 @@ module.exports = function (grunt) {
   grunt.registerTask('jsxcreate', 'Wraps msginit to simplify locale creation.', function () {
 
     var options = this.options();
-    var baseLocaleDir = options.baseDir || 'locale';
-
-    var spawnOpts = {
-      stdio: ['pipe', null, null, null, 'pipe']
-    };
-
-    if (options.cwd) {
-      spawnOpts.cwd = options.cwd;
-    }
-
+    var baseLocaleDir = options.localeDir || 'locale';
     var template = options.template;
+
     template = template || path.join(baseLocaleDir, 'templates/LC_MESSAGES/messages.pot');
     template = path.normalize(template);
 

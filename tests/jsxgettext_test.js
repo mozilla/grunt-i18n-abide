@@ -1,9 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
-var contains = function(needle, haystack) {
-  return haystack.indexOf(needle) > -1;
-};
+var contains = require('./helpers');
 
 exports.jsxgettext = {
   setUp: function(done) {

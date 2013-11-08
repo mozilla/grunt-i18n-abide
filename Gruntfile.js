@@ -76,15 +76,38 @@ module.exports = function(grunt) {
         options: {
           language: 'JavaScript',
         }
-      }
+      },
+      messages: {
+        src: ['tests/fixtures/sorted.js'],
+        dest: 'tests/tmp/messages.pot',
+        options: {
+          language: 'JavaScript',
+        }
+      },
+      updated: {
+        src: ['tests/fixtures/updated.js'],
+        dest: 'tests/tmp/messages.pot',
+        options: {
+          language: 'JavaScript',
+        }
+      },
+
     },
 
     // Configuration to be run (and then tested).
     jsxcreate: {
       options: {
-        template: 'tests/fixtures/messages.pot',
+        template: 'tests/tmp/messages.pot',
         locales: projectLocales,
-        baseDir: 'tests/tmp',
+        localeDir: 'tests/tmp',
+      }
+    },
+
+    // Configuration to be run (and then tested).
+    jsxmerge: {
+      options: {
+        template: 'tests/tmp/messages.pot',
+        localeDir: 'tests/tmp',
       }
     },
 
@@ -105,14 +128,30 @@ module.exports = function(grunt) {
 
   // Clean, run the plugin with the above config. Then test the output.
   grunt.registerTask('test', [
+    'jshint',
     'clean',
+
+    // Extract the strings.
     'jsxgettext:basic',
     'jsxgettext:jinja',
     'jsxgettext:jinjaKeyword',
     'jsxgettext:join1',
     'jsxgettext:join2',
     'jsxgettext:sorted',
+
+    // First extraction of tests/tmp/messages.pot
+    'jsxgettext:messages',
+
+    // Create the locales.
     'jsxcreate',
+
+    // Updated extraction of tests/tmp/messages.pot
+    'jsxgettext:updated',
+
+    // Run the merge to update locales.
+    'jsxmerge',
+
+    // Test all the things.
     'nodeunit'
   ]);
 
