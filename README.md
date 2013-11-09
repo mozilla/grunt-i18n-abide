@@ -29,7 +29,7 @@ grunt.loadNpmTasks('grunt-jsxgettext');
 * jsxmerge
 * jsxcompile
 
-## The jsxgettext task
+## The `jsxgettext` task
 
 ### Overview
 In your project's Gruntfile, add a section named `jsxgettext` to the data object passed into `grunt.initConfig()`.
@@ -89,7 +89,7 @@ Default value: `true`
 
 Whether to sort extracted strings.
 
-## The jsxcreate task
+## The `jsxcreate` task
 
 ### Overview
 In your project's Gruntfile, add a section named `jsxcreate` to the data object passed into `grunt.initConfig()`.
@@ -125,7 +125,7 @@ Default value: `locale`
 The base locale directory.
 
 
-## The jsxmerge task
+## The `jsxmerge` task
 
 ### Overview
 In your project's Gruntfile, add a section named `jsxmerge` to the data object passed into `grunt.initConfig()`.
@@ -157,9 +157,7 @@ Default value: `locale`
 The base locale directory.
 
 
-## The jsxcompile task
-
-## The jsxmerge task
+## The `jsxcompile` task
 
 ### Overview
 In your project's Gruntfile, add a section named `jsxcompile` to the data object passed into `grunt.initConfig()`.
