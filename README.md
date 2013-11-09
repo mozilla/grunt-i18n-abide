@@ -22,7 +22,14 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-jsxgettext');
 ```
 
-## The "jsxgettext" task
+## The tasks
+
+* jsxgettext
+* jsxcreate
+* jsxmerge
+* jsxcompile
+
+## The jsxgettext task
 
 ### Overview
 In your project's Gruntfile, add a section named `jsxgettext` to the data object passed into `grunt.initConfig()`.
@@ -30,7 +37,6 @@ In your project's Gruntfile, add a section named `jsxgettext` to the data object
 This example show two targets for extracting strings from JS and HTML. They both use the same destination.
 
 ```js
-grunt.initConfig({
   jsxgettext: {
     js: {
       src: 'lib/**/*.js',
@@ -46,9 +52,17 @@ grunt.initConfig({
         language: 'Jinja',
       }
     },
-  },
-})
+  }
 ```
+
+### Files
+
+#### src
+Standard grunt files src config allowing a set of paths to make up the list of files that are searched for gettext strings.
+
+#### dest
+Standard grunt files dest config allowing configuration of where the pot file should be created.
+Default value: `locale/templates/LC\_MESSAGES/messages.pot`
 
 ### Options
 
@@ -74,6 +88,121 @@ Type: `Boolean`
 Default value: `true`
 
 Whether to sort extracted strings.
+
+## The jsxcreate task
+
+### Overview
+In your project's Gruntfile, add a section named `jsxcreate` to the data object passed into `grunt.initConfig()`.
+
+### Options
+```js
+  jsxcreate: {
+    options: {
+      template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
+      locales: ['en_US', 'fr', 'es'],
+      localeDir: 'locale',
+    }
+  },
+```
+
+### Options
+
+#### options.template
+Type: `String`
+Default value: `locale/templates/LC\_MESSAGES/messages.pot`
+
+The path to the template pot file strings are extracted to.
+
+#### options.locales
+Type: `Array`
+
+A list of the locales you want to create.
+
+#### options.template
+Type: `String`
+Default value: `locale`
+
+The base locale directory.
+
+
+## The jsxmerge task
+
+### Overview
+In your project's Gruntfile, add a section named `jsxmerge` to the data object passed into `grunt.initConfig()`.
+
+This command merges newly extracted strings into the locales.
+
+### Options
+```js
+  jsxmerge: {
+    options: {
+      template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
+      localeDir: 'locale',
+    }
+  },
+```
+
+### Options
+
+#### options.template
+Type: `String`
+Default value: `locale/templates/LC\_MESSAGES/messages.pot`
+
+The path to the template pot file strings are extracted to.
+
+#### options.localeDir
+Type: `String`
+Default value: `locale`
+
+The base locale directory.
+
+
+## The jsxcompile task
+
+## The jsxmerge task
+
+### Overview
+In your project's Gruntfile, add a section named `jsxcompile` to the data object passed into `grunt.initConfig()`.
+
+This command can take multiple targets, so you can compile more than one set of files if you want or a mix of mo/JSON.
+
+### Example Conf
+```js
+  jsxcompile: {
+    json: {
+      dest: '/json/',
+      options: {
+        type: 'json',
+        localeDir: 'tests/tmp',
+      }
+    },
+    mo: {
+      options: {
+        type: 'mo',
+        localeDir: 'tests/tmp',
+      }
+    }
+  },
+```
+
+### Files
+
+#### dest
+Standard grunt files dest config allowing configuration of where the json should end up.
+
+### Options
+
+#### options.type
+Type: `String`
+
+The type of compilation `mo` or `json`
+
+#### options.localeDir
+Type: `String`
+Default value: `locale`
+
+The base locale directory.
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

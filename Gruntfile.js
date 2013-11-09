@@ -121,7 +121,6 @@ module.exports = function(grunt) {
         }
       },
       mo: {
-        dest: 'tests/tmp/mo/',
         options: {
           type: 'mo',
           localeDir: 'tests/tmp',
