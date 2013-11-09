@@ -111,6 +111,24 @@ module.exports = function(grunt) {
       }
     },
 
+    // Configuration to be run (and then tested).
+    jsxcompile: {
+      json: {
+        dest: 'tests/tmp/json/',
+        options: {
+          type: 'json',
+          localeDir: 'tests/tmp',
+        }
+      },
+      mo: {
+        dest: 'tests/tmp/mo/',
+        options: {
+          type: 'mo',
+          localeDir: 'tests/tmp',
+        }
+      }
+    },
+
     // Unit tests.
     nodeunit: {
       tests: ['tests/*_test.js'],
@@ -150,6 +168,10 @@ module.exports = function(grunt) {
 
     // Run the merge to update locales.
     'jsxmerge',
+
+    // Compile JSON + mo.
+    'jsxcompile:json',
+    'jsxcompile:mo',
 
     // Test all the things.
     'nodeunit'

@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "jsxgettext": "~0.2.0",
-    "shelljs": "~0.2.6"
+    "shelljs": "~0.2.6",
+    "po2json": "0.0.6"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
