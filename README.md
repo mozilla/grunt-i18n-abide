@@ -207,7 +207,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ### Where to file bugs
 
-Bear in mind this code only wraps jsxgettext. If there's a problem with how grunt talks to jsxgettext then that's a problem with this package. However if the output is not correct (and it's not related to configuration) please file a bug on jsxgettext.
+Bear in mind this code only wraps jsxgettext and standard gettext tools. If there's a problem with how grunt talks to jsxgettext then that's a problem with this package. However if the output is not correct (and it's not related to configuration) please file a bug on jsxgettext.
 
 ## Release History
 
