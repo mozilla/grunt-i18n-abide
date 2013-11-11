@@ -1,5 +1,9 @@
 var fs = require('fs');
 var path = require('path');
+var helpers = require('./lib/helpers');
+
+var runShellSync = helpers.runShellSync;
+var checkCommand = helpers.checkCommand;
 
 module.exports = function (grunt) {
 
@@ -14,7 +18,10 @@ module.exports = function (grunt) {
       join: true,
     });
 
-    var done = this.async();
+    var cmd = options.cmd || path.join(__dirname, '../node_modules/.bin/jsxgettext');
+
+    checkCommand(cmd);
+
     var args = [];
     var filesSrc = this.filesSrc;
     var dest = path.normalize(this.data.dest);
@@ -29,16 +36,14 @@ module.exports = function (grunt) {
         }
       });
     } else {
-      grunt.log.error('Src list is empty. Bailing...');
-      return false;
+      grunt.fail.fatal('Src list is empty. Bailing...');
     }
 
     // Make the destination dir if it doesn't exist.
     grunt.file.mkdir(destDir);
 
     if (!grunt.file.isDir(destDir)) {
-      grunt.log.error('Destination directory "' + destDir + '" not found.');
-      return false;
+      grunt.fail.fatal('Destination directory "' + destDir + '" not found.');
     } else {
       args.push('-o');
       args.push(dest);
@@ -68,38 +73,7 @@ module.exports = function (grunt) {
       });
     }
 
-    var spawnOpts = {
-      stdio: 'inherit'
-    };
+    var result = runShellSync(cmd, args);
 
-    if (options.cwd) {
-      spawnOpts.cwd = options.cwd;
-    }
-
-    if (options.env) {
-      spawnOpts.env = process.env;
-      var envProps = Object.keys(options.env);
-      envProps.forEach(function (envProp) {
-        spawnOpts.env[envProp] = options.env[envProp];
-      });
-    }
-
-    grunt.util.spawn({
-      cmd: path.join(__dirname, '../node_modules/.bin/jsxgettext'),
-      args: args,
-      opts: spawnOpts
-    },
-    function (error) {
-      if (error) {
-        grunt.fail.fatal('jsxgettext must be installed as a local dependency of grunt-i18n-abide.\n\n' +
-
-                         'Run the following command:\n' +
-                         'rm -rf node_modules/jsxgettext\n\n' +
-
-                         'Then run:\n' +
-                         'npm install grunt-i18n-abide --save-dev');
-      }
-      done();
-    });
   });
 };

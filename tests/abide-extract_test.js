@@ -2,10 +2,24 @@
 
 var grunt = require('grunt');
 var contains = require('./helpers');
+var path = require('path');
+var shell = require('shelljs');
 
 exports.extract = {
   setUp: function(done) {
     done();
+  },
+  testCommandNotExist: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abide-extract:noexist');
+    test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
+    test.done();
+  },
+  testCommandNonZeroExit: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abide-extract:badcmd');
+    test.ok(contains('Fatal error: Command "tests/bin/sad.sh', result.output));
+    test.done();
   },
   testBasic: function(test) {
     test.expect(2);

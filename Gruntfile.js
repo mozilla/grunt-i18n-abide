@@ -92,7 +92,22 @@ module.exports = function(grunt) {
           language: 'JavaScript',
         }
       },
-
+      badcmd: {
+        src: ['tests/fixtures/updated.js'],
+        dest: 'tests/tmp/messages.pot',
+        options: {
+          language: 'JavaScript',
+          cmd: 'tests/bin/sad.sh',
+        }
+      },
+      noexist: {
+        src: ['tests/fixtures/updated.js'],
+        dest: 'tests/tmp/messages.pot',
+        options: {
+          language: 'JavaScript',
+          cmd: 'tests/bin/whatevs.sh',
+        }
+      },
     },
 
     // Configuration to be run (and then tested).
@@ -127,10 +142,40 @@ module.exports = function(grunt) {
       },
       mo: {
         options: {
+          localeDir: 'tests/tmp',
+                     type: 'mo',
+        }
+      },
+      noexistmo: {
+        options: {
           type: 'mo',
+          cmd: 'tests/bin/whatevs.sh',
           localeDir: 'tests/tmp',
         }
-      }
+      },
+      noexistjson: {
+        dest: 'tests/tmp/json/',
+        options: {
+          type: 'json',
+          cmd: 'tests/bin/whatevs.sh',
+          localeDir: 'tests/tmp',
+        }
+      },
+      badcmd: {
+        options: {
+          type: 'mo',
+          cmd: 'tests/bin/sad.sh',
+          localeDir: 'tests/tmp',
+        }
+      },
+      nodestjson: {
+        options: {
+          type: 'json',
+          cmd: 'tests/bin/sad.sh',
+          localeDir: 'tests/tmp',
+        }
+      },
+
     },
 
     // Unit tests.

@@ -1,8 +1,11 @@
 var fs = require('fs');
 var path = require('path');
-var shell = require('shelljs');
 var lockFilePath = '/tmp/abide-compile.lock';
+var shell = require('shelljs');
+var helpers = require('./lib/helpers');
 
+var runShellSync = helpers.runShellSync;
+var checkCommand = helpers.checkCommand;
 
 module.exports = function (grunt) {
 
@@ -20,7 +23,7 @@ module.exports = function (grunt) {
     return grunt.file.isFile(lockFilePath);
   }
 
-  function compileJSON(files, localeDir, dest) {
+  function compileJSON(files, localeDir, dest, options) {
 
     createLockFile();
 
@@ -35,12 +38,15 @@ module.exports = function (grunt) {
       var jsfile = path.join(dest, lang, stem + '.js');
       grunt.file.mkdir(path.join(dest, lang));
 
-      args.push(path.join(__dirname, '../node_modules/po2json/bin/po2json'));
+      var cmd = options.cmd || path.join(__dirname, '../node_modules/po2json/bin/po2json');
+
+      checkCommand(cmd);
+
       args.push(pofile);
       args.push(jsonfile);
 
       // Create json file.
-      shell.exec(args.join(' '));
+      runShellSync(cmd, args);
 
       fs.writeFileSync(jsfile, 'var json_locale_data = ');
       fs.writeFileSync(jsfile, fs.readFileSync(jsonfile), { flag: 'a' });
@@ -51,15 +57,17 @@ module.exports = function (grunt) {
 
   }
 
-  function compileMo(files) {
+  function compileMo(files, options) {
+    var cmd = options.cmd || 'msgfmt';
+    checkCommand(cmd);
 
     files.forEach(function(lang) {
       var dir = path.dirname(lang);
       var stem = path.basename(lang, '.po');
-      var args = ['msgfmt', '-o'];
+      var args = ['-o'];
       args.push(path.join(dir, stem + '.mo'));
       args.push(lang);
-      shell.exec(args.join(' '));
+      runShellSync(cmd, args);
     });
 
   }
@@ -68,13 +76,21 @@ module.exports = function (grunt) {
 
     var options = this.options();
     var dest = this.data.dest;
-    var type = options.type.toLowerCase();
+    var type = options.type || 'json';
+    type = type.toLowerCase();
     var validTypes = ['json', 'mo', 'both'];
     var localeDir = options.localeDir || 'locale';
 
+    if (!dest && type === 'json') {
+      grunt.fail.fatal('"dest" needs to be specifed when type is JSON');
+    }
+
+    if (!localeDir || !grunt.file.isDir(localeDir)) {
+      grunt.fail.fatal('localeDir: "' + localeDir + '" doesn\'t exist!');
+    }
+
     if (validTypes.indexOf(type) === -1) {
-      grunt.log.error('"options.type" is invalid should be one of ' + validTypes.join(', '));
-      return false;
+      grunt.fail.fatal('"options.type" is invalid should be one of ' + validTypes.join(', '));
     }
 
     var files = shell.find(localeDir).filter(function(file) {
@@ -83,10 +99,10 @@ module.exports = function (grunt) {
 
     switch(type) {
       case 'json':
-        compileJSON(files, localeDir, dest);
+        compileJSON(files, localeDir, dest, options);
         break;
       case 'mo':
-        compileMo(files);
+        compileMo(files, options);
         break;
     }
 
