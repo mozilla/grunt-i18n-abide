@@ -215,4 +215,4 @@ Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If 
 
 ## Release History
 
-* 0.1.0: Initial version.
+* 0.0.1: Initial version.
