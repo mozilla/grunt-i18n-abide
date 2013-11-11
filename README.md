@@ -97,10 +97,12 @@ In your project's Gruntfile, add a section named `abide-create` to the data obje
 ### Options
 ```js
   'abide-create': {
-    options: {
-      template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
-      locales: ['en_US', 'fr', 'es'],
-      localeDir: 'locale',
+    default: { // Target name.
+      options: {
+        template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
+        locales: ['en_US', 'fr', 'es'],
+        localeDir: 'locale',
+      }
     }
   },
 ```
@@ -135,9 +137,11 @@ This command merges newly extracted strings into the locales.
 ### Options
 ```js
   'abide-merge': {
-    options: {
-      template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
-      localeDir: 'locale',
+    default: { // Target name.
+      options: {
+        template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
+        localeDir: 'locale',
+      }
     }
   },
 ```

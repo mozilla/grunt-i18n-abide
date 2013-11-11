@@ -10,7 +10,7 @@ module.exports = function (grunt) {
     // Defaults.
     var options = this.options({
       language: 'JavaScript',
-      sort: true,
+      sort: false,
       join: true,
     });
 

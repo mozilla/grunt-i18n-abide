@@ -75,6 +75,7 @@ module.exports = function(grunt) {
         dest: 'tests/tmp/sorted.pot',
         options: {
           language: 'JavaScript',
+          sort: true
         }
       },
       messages: {
@@ -96,18 +97,22 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     'abide-create': {
-      options: {
-        template: 'tests/tmp/messages.pot',
-        locales: projectLocales,
-        localeDir: 'tests/tmp',
+      default: {
+        options: {
+          template: 'tests/tmp/messages.pot',
+          locales: projectLocales,
+          localeDir: 'tests/tmp',
+        }
       }
     },
 
     // Configuration to be run (and then tested).
     'abide-merge': {
-      options: {
-        template: 'tests/tmp/messages.pot',
-        localeDir: 'tests/tmp',
+      default: {
+        options: {
+          template: 'tests/tmp/messages.pot',
+          localeDir: 'tests/tmp',
+        }
       }
     },
 
