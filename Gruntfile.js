@@ -118,7 +118,21 @@ module.exports = function(grunt) {
           locales: projectLocales,
           localeDir: 'tests/tmp',
         }
+      },
+      templatenoexist: {
+        options: {
+          locales: projectLocales,
+          template: 'tests/tmp/noexist.pot',
+        }
+      },
+      commandnoexist: {
+        options: {
+          locales: projectLocales,
+          template: 'tests/tmp/messages.pot',
+          cmd: 'tests/bin/whatevs.sh',
+        }
       }
+
     },
 
     // Configuration to be run (and then tested).
@@ -126,6 +140,19 @@ module.exports = function(grunt) {
       default: {
         options: {
           template: 'tests/tmp/messages.pot',
+          localeDir: 'tests/tmp',
+        }
+      },
+      templatenoexist: {
+        options: {
+          template: 'tests/tmp/noexist.pot',
+          localeDir: 'tests/tmp',
+        }
+      },
+      commandnoexist: {
+        options: {
+          template: 'tests/tmp/messages.pot',
+          cmd: 'tests/bin/whatevs.sh',
           localeDir: 'tests/tmp',
         }
       }
@@ -210,13 +237,13 @@ module.exports = function(grunt) {
     'abide-extract:messages',
 
     // Create the locales.
-    'abide-create',
+    'abide-create:default',
 
     // Updated extraction of tests/tmp/messages.pot
     'abide-extract:updated',
 
     // Run the merge to update locales.
-    'abide-merge',
+    'abide-merge:default',
 
     // Compile JSON + mo.
     'abide-compile:json',

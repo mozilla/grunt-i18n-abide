@@ -1,10 +1,24 @@
 'use strict';
 
 var grunt = require('grunt');
+var shell = require('shelljs');
+var contains = require('./helpers');
 
 exports.create = {
   setUp: function(done) {
     done();
+  },
+  testCommandNoExist: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abide-create:commandnoexist');
+    test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
+    test.done();
+  },
+  testTemplateNoExist: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abide-create:templatenoexist');
+    test.ok(contains('Fatal error: template file "tests/tmp/noexist.pot" does not exist', result.output));
+    test.done();
   },
   testUS: function(test) {
     test.expect(1);

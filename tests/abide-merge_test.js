@@ -2,10 +2,24 @@
 
 var grunt = require('grunt');
 var contains = require('./helpers');
+var shell = require('shelljs');
+
 
 exports.merge = {
   setUp: function(done) {
     done();
+  },
+  testCommandNoExist: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abide-merge:commandnoexist');
+    test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
+    test.done();
+  },
+  testTemplateNoExist: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abide-merge:templatenoexist');
+    test.ok(contains('Fatal error: template file "tests/tmp/noexist.pot" does not exist', result.output));
+    test.done();
   },
   testUS: function(test) {
     test.expect(2);

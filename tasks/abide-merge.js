@@ -1,5 +1,9 @@
 var path = require('path');
 var shell = require('shelljs');
+var helpers = require('./lib/helpers');
+
+var runShellSync = helpers.runShellSync;
+var checkCommand = helpers.checkCommand;
 
 require('shelljs/global');
 
@@ -16,9 +20,12 @@ module.exports = function (grunt) {
     template = template || path.join(baseLocaleDir, 'templates/LC_MESSAGES/messages.pot');
     template = path.normalize(template);
 
+    if (!baseLocaleDir || !grunt.file.isDir(baseLocaleDir)) {
+      grunt.fail.fatal('localeDir: "' + baseLocaleDir + '" doesn\'t exist!');
+    }
+
     if (!grunt.file.isFile(template)) {
-      grunt.log.error('template file "' + template + '" does not exist');
-      return false;
+      grunt.fail.fatal('template file "' + template + '" does not exist');
     }
 
     var files = shell.find(baseLocaleDir).filter(function(file) {
@@ -31,14 +38,16 @@ module.exports = function (grunt) {
       var dir = path.dirname(lang);
       var stem = path.basename(lang, '.po');
 
-      args.push('msgmerge');
+      var cmd = options.cmd || 'msgmerge';
+      checkCommand(cmd);
+
       args.push('-q');
       args.push('-o');
       args.push(path.join(dir, stem + '.po.tmp'));
       args.push(path.join(dir, stem + '.po'));
       args.push(template);
 
-      shell.exec(args.join(' '));
+      runShellSync(cmd, args);
 
       moveArgs.push('mv');
       moveArgs.push(path.join(dir, stem + '.po.tmp'));

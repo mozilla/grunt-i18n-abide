@@ -1,5 +1,9 @@
 var path = require('path');
-var shell = require('shelljs');
+var helpers = require('./lib/helpers');
+
+var runShellSync = helpers.runShellSync;
+var checkCommand = helpers.checkCommand;
+
 
 module.exports = function (grunt) {
 
@@ -15,16 +19,21 @@ module.exports = function (grunt) {
     template = path.normalize(template);
 
     if (!grunt.file.isFile(template)) {
-      grunt.log.error('template file "' + template + '" does not exist');
-      return false;
+      grunt.fail.fatal('template file "' + template + '" does not exist');
     }
 
-    options.locales.forEach(function(locale) {
+    var locales = options.locales || [];
+    if (locales.length === 0) {
+      grunt.fail.fatal('A list of locales needs to be specified.');
+    }
+
+    locales.forEach(function(locale) {
       // Make the dir for the locale.
       var args = [];
       var outputFile = path.join(baseLocaleDir, locale, 'LC_MESSAGES/messages.po');
+      var cmd = options.cmd || 'msginit';
 
-      args.push('msginit');
+      checkCommand(cmd);
 
       // Non-interactive :)
       args.push('--no-translator');
@@ -41,7 +50,7 @@ module.exports = function (grunt) {
       args.push(locale);
 
       // Synchronously execute commands.
-      shell.exec(args.join(' '));
+      runShellSync(cmd, args);
 
       grunt.log.ok('Locale "' + locale + '" created successfully.');
     });
