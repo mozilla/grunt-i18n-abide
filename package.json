@@ -44,5 +44,9 @@
   },
   "keywords": [
     "gruntplugin"
+    "l10n",
+    "i18n",
+    "i18n-abide",
+    "gettext"
   ]
 }
