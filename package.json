@@ -43,7 +43,7 @@
     "grunt": "~0.4.1"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
     "l10n",
     "i18n",
     "i18n-abide",
