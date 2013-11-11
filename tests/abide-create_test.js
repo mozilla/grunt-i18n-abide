@@ -2,7 +2,7 @@
 
 var grunt = require('grunt');
 
-exports.jsxcreate = {
+exports.create = {
   setUp: function(done) {
     done();
   },

@@ -3,7 +3,7 @@
 var grunt = require('grunt');
 var contains = require('./helpers');
 
-exports.jsxcompile = {
+exports.compile = {
   testUS: function(test) {
     test.expect(5);
     var jsFile = 'tests/tmp/json/en_US/messages.js';

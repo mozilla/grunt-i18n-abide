@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 
   'use strict';
 
-  grunt.registerTask('jsxmerge', 'Wraps msgmerge to simplify merging of translation strings.', function () {
+  grunt.registerTask('abide-merge', 'Wraps msgmerge to simplify merging of translation strings.', function () {
 
     var options = this.options();
     var baseLocaleDir = options.localeDir || 'locale';

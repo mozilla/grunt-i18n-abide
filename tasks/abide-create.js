@@ -5,7 +5,7 @@ module.exports = function (grunt) {
 
   'use strict';
 
-  grunt.registerTask('jsxcreate', 'Wraps msginit to simplify locale creation.', function () {
+  grunt.registerTask('abide-create', 'Wraps msginit to simplify locale creation.', function () {
 
     var options = this.options();
     var baseLocaleDir = options.localeDir || 'locale';

@@ -3,7 +3,7 @@
 var grunt = require('grunt');
 var contains = require('./helpers');
 
-exports.jsxgettext = {
+exports.extract = {
   setUp: function(done) {
     done();
   },

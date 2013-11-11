@@ -1,11 +1,3 @@
-/*
- * grunt-jsxgettext
- * https://github.com/muffinresearch/grunt-jsxgettext
- *
- * Copyright (c) 2013 Stuart Colville
- * Licensed under the MIT license.
- */
-
 var fs = require('fs');
 var path = require('path');
 
@@ -13,7 +5,7 @@ module.exports = function (grunt) {
 
   'use strict';
 
-  grunt.registerMultiTask('jsxgettext', 'Extracts gettext from js, EJS or Jinja (nunjucks).', function () {
+  grunt.registerMultiTask('abide-extract', 'Extracts gettext from js, EJS or Jinja (nunjucks).', function () {
 
     // Defaults.
     var options = this.options({
@@ -99,13 +91,13 @@ module.exports = function (grunt) {
     },
     function (error) {
       if (error) {
-        grunt.fail.fatal('jsxgettext must be installed as a local dependency of grunt-jsxgettext.\n\n' +
+        grunt.fail.fatal('jsxgettext must be installed as a local dependency of grunt-i18n-abide.\n\n' +
 
                          'Run the following command:\n' +
                          'rm -rf node_modules/jsxgettext\n\n' +
 
                          'Then run:\n' +
-                         'npm install grunt-jsxgettext --save-dev');
+                         'npm install grunt-i18n-abide --save-dev');
       }
       done();
     });

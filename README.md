@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/muffinresearch/grunt-jsxgettext.png?branch=master)](https://travis-ci.org/muffinresearch/grunt-jsxgettext)
+[![Build Status](https://travis-ci.org/muffinresearch/grunt-i18n-abide.png?branch=master)](https://travis-ci.org/muffinresearch/grunt-i18n-abide)
 
-# grunt-jsxgettext
+# grunt-i18n-abide
 
-> Grunt plugin for running jsxgettext against your codebase. jsxgettext extracts strings from your JS
+> Grunt plugin for running `jsxgettext` and `gettext` tools against your codebase. `jsxgettext` extracts strings from your JS
 and template files (EJS/Jinja (nunjucks)) to a pot format.
 
 **Note: It's early days for this, and (despite the docs below) it's not in npm just yet until I iron out any kinks.**
@@ -13,31 +13,31 @@ This plugin requires Grunt `~0.4.1`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-jsxgettext --save-dev
+npm install grunt-i18n-abide --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-jsxgettext');
+grunt.loadNpmTasks('grunt-i18n-abide');
 ```
 
 ## The tasks
 
-* jsxgettext
-* jsxcreate
-* jsxmerge
-* jsxcompile
+* abide-extract
+* abide-create
+* abide-merge
+* abide-compile
 
-## The `jsxgettext` task
+## The `abide-extract` task
 
 ### Overview
-In your project's Gruntfile, add a section named `jsxgettext` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abide-extract` to the data object passed into `grunt.initConfig()`.
 
 This example show two targets for extracting strings from JS and HTML. They both use the same destination.
 
 ```js
-  jsxgettext: {
+  'abide-extract': {
     js: {
       src: 'lib/**/*.js',
       dest: 'locale/templates/LC_MESSAGES/messages.pot',
@@ -89,14 +89,14 @@ Default value: `true`
 
 Whether to sort extracted strings.
 
-## The `jsxcreate` task
+## The `abide-create` task
 
 ### Overview
-In your project's Gruntfile, add a section named `jsxcreate` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abide-create` to the data object passed into `grunt.initConfig()`.
 
 ### Options
 ```js
-  jsxcreate: {
+  'abide-create': {
     options: {
       template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
       locales: ['en_US', 'fr', 'es'],
@@ -125,16 +125,16 @@ Default value: `locale`
 The base locale directory.
 
 
-## The `jsxmerge` task
+## The `abide-merge` task
 
 ### Overview
-In your project's Gruntfile, add a section named `jsxmerge` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abide-merge` to the data object passed into `grunt.initConfig()`.
 
 This command merges newly extracted strings into the locales.
 
 ### Options
 ```js
-  jsxmerge: {
+  'abide-merge': {
     options: {
       template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
       localeDir: 'locale',
@@ -157,16 +157,16 @@ Default value: `locale`
 The base locale directory.
 
 
-## The `jsxcompile` task
+## The `abide-compile` task
 
 ### Overview
-In your project's Gruntfile, add a section named `jsxcompile` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abide-compile` to the data object passed into `grunt.initConfig()`.
 
 This command can take multiple targets, so you can compile more than one set of files if you want or a mix of mo/JSON.
 
 ### Example Conf
 ```js
-  jsxcompile: {
+  'abide-compile': {
     json: {
       dest: '/json/',
       options: {
@@ -207,7 +207,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ### Where to file bugs
 
-Bear in mind this code only wraps jsxgettext and standard gettext tools. If there's a problem with how grunt talks to jsxgettext then that's a problem with this package. However if the output is not correct (and it's not related to configuration) please file a bug on jsxgettext.
+Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If there's a problem with how grunt talks to `jsxgettext` or those CLI tools then that's a problem with this package. However if the output is not correct (and it's not related to configuration) please file a bug on the relevant project.
 
 ## Release History
 

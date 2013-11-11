@@ -1,6 +1,6 @@
 /*
- * grunt-jsxgettext
- * https://github.com/muffinresearch/grunt-jsxgettext
+ * grunt-abide-extract
+ * https://github.com/muffinresearch/grunt-abide-extract
  *
  * Copyright (c) 2013 Stuart Colville
  * Licensed under the MIT license.
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    jsxgettext: {
+    'abide-extract': {
       basic: {
         src: ['tests/fixtures/basic*.js'],
         dest: 'tests/tmp/basic.pot',
@@ -95,7 +95,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    jsxcreate: {
+    'abide-create': {
       options: {
         template: 'tests/tmp/messages.pot',
         locales: projectLocales,
@@ -104,7 +104,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    jsxmerge: {
+    'abide-merge': {
       options: {
         template: 'tests/tmp/messages.pot',
         localeDir: 'tests/tmp',
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    jsxcompile: {
+    'abide-compile': {
       json: {
         dest: 'tests/tmp/json/',
         options: {
@@ -149,28 +149,28 @@ module.exports = function(grunt) {
     'clean',
 
     // Extract the strings.
-    'jsxgettext:basic',
-    'jsxgettext:jinja',
-    'jsxgettext:jinjaKeyword',
-    'jsxgettext:join1',
-    'jsxgettext:join2',
-    'jsxgettext:sorted',
+    'abide-extract:basic',
+    'abide-extract:jinja',
+    'abide-extract:jinjaKeyword',
+    'abide-extract:join1',
+    'abide-extract:join2',
+    'abide-extract:sorted',
 
     // First extraction of tests/tmp/messages.pot
-    'jsxgettext:messages',
+    'abide-extract:messages',
 
     // Create the locales.
-    'jsxcreate',
+    'abide-create',
 
     // Updated extraction of tests/tmp/messages.pot
-    'jsxgettext:updated',
+    'abide-extract:updated',
 
     // Run the merge to update locales.
-    'jsxmerge',
+    'abide-merge',
 
     // Compile JSON + mo.
-    'jsxcompile:json',
-    'jsxcompile:mo',
+    'abide-compile:json',
+    'abide-compile:mo',
 
     // Test all the things.
     'nodeunit'

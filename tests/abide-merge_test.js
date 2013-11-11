@@ -3,7 +3,7 @@
 var grunt = require('grunt');
 var contains = require('./helpers');
 
-exports.jsxmerge = {
+exports.merge = {
   setUp: function(done) {
     done();
   },

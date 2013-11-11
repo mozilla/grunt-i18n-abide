@@ -1,8 +1,8 @@
 {
-  "name": "grunt-jsxgettext",
+  "name": "grunt-i18n-abide",
   "description": "Grunt plugin for running jsxgettext against your codebase.",
   "version": "0.1.0",
-  "homepage": "https://github.com/muffinresearch/grunt-jsxgettext",
+  "homepage": "https://github.com/muffinresearch/grunt-i18n-abide",
   "author": {
     "name": "Stuart Colville",
     "email": "scolville@mozilla.com",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/muffinresearch/grunt-jsxgettext.git"
+    "url": "git://github.com/muffinresearch/grunt-i18n-abide.git"
   },
   "bugs": {
-    "url": "https://github.com/muffinresearch/grunt-jsxgettext/issues"
+    "url": "https://github.com/muffinresearch/grunt-i18n-abide/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/muffinresearch/grunt-jsxgettext/blob/master/LICENSE-MIT"
+      "url": "https://github.com/muffinresearch/grunt-i18n-abide/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
