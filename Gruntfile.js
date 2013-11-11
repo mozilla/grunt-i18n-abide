@@ -1,6 +1,6 @@
 /*
- * grunt-abide-extract
- * https://github.com/muffinresearch/grunt-abide-extract
+ * grunt-abideExtract
+ * https://github.com/muffinresearch/grunt-abideExtract
  *
  * Copyright (c) 2013 Stuart Colville
  * Licensed under the MIT license.
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    'abide-extract': {
+    abideExtract: {
       basic: {
         src: ['tests/fixtures/basic*.js'],
         dest: 'tests/tmp/basic.pot',
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    'abide-create': {
+    abideCreate: {
       default: {
         options: {
           template: 'tests/tmp/messages.pot',
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    'abide-merge': {
+    abideMerge: {
       default: {
         options: {
           template: 'tests/tmp/messages.pot',
@@ -159,7 +159,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    'abide-compile': {
+    abideCompile: {
       json: {
         dest: 'tests/tmp/json/',
         options: {
@@ -226,28 +226,28 @@ module.exports = function(grunt) {
     'clean',
 
     // Extract the strings.
-    'abide-extract:basic',
-    'abide-extract:jinja',
-    'abide-extract:jinjaKeyword',
-    'abide-extract:join1',
-    'abide-extract:join2',
-    'abide-extract:sorted',
+    'abideExtract:basic',
+    'abideExtract:jinja',
+    'abideExtract:jinjaKeyword',
+    'abideExtract:join1',
+    'abideExtract:join2',
+    'abideExtract:sorted',
 
     // First extraction of tests/tmp/messages.pot
-    'abide-extract:messages',
+    'abideExtract:messages',
 
     // Create the locales.
-    'abide-create:default',
+    'abideCreate:default',
 
     // Updated extraction of tests/tmp/messages.pot
-    'abide-extract:updated',
+    'abideExtract:updated',
 
     // Run the merge to update locales.
-    'abide-merge:default',
+    'abideMerge:default',
 
     // Compile JSON + mo.
-    'abide-compile:json',
-    'abide-compile:mo',
+    'abideCompile:json',
+    'abideCompile:mo',
 
     // Test all the things.
     'nodeunit'

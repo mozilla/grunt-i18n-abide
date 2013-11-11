@@ -7,25 +7,25 @@ var shell = require('shelljs');
 exports.compile = {
   testCommandNoDestJSON: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-compile:nodestjson');
+    var result = shell.exec('grunt abideCompile:nodestjson');
     test.ok(contains('Fatal error: "dest" needs', result.output));
     test.done();
   },
   testCommandNotExistJSON: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-compile:noexistjson');
+    var result = shell.exec('grunt abideCompile:noexistjson');
     test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
     test.done();
   },
   testCommandNotExistMo: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-compile:noexistmo');
+    var result = shell.exec('grunt abideCompile:noexistmo');
     test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
     test.done();
   },
   testCommandNonZeroExit: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-compile:badcmd');
+    var result = shell.exec('grunt abideCompile:badcmd');
     test.ok(contains('Fatal error: Command "tests/bin/sad.sh', result.output));
     test.done();
   },

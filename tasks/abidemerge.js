@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 
   'use strict';
 
-  grunt.registerMultiTask('abide-merge', 'Wraps msgmerge to simplify merging of translation strings.', function () {
+  grunt.registerMultiTask('abideMerge', 'Wraps msgmerge to simplify merging of translation strings.', function () {
 
     var options = this.options();
     var baseLocaleDir = options.localeDir || 'locale';

@@ -11,13 +11,13 @@ exports.extract = {
   },
   testCommandNotExist: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-extract:noexist');
+    var result = shell.exec('grunt abideExtract:noexist');
     test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
     test.done();
   },
   testCommandNonZeroExit: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-extract:badcmd');
+    var result = shell.exec('grunt abideExtract:badcmd');
     test.ok(contains('Fatal error: Command "tests/bin/sad.sh', result.output));
     test.done();
   },

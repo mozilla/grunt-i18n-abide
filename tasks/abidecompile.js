@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var lockFilePath = '/tmp/abide-compile.lock';
+var lockFilePath = '/tmp/abideCompile.lock';
 var shell = require('shelljs');
 var helpers = require('./lib/helpers');
 
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
 
   }
 
-  grunt.registerMultiTask('abide-compile', 'Wraps po2json/ to simplify updating new locales.', function () {
+  grunt.registerMultiTask('abideCompile', 'Wraps po2json/ to simplify updating new locales.', function () {
 
     var options = this.options();
     var dest = this.data.dest;

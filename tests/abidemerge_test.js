@@ -11,13 +11,13 @@ exports.merge = {
   },
   testCommandNoExist: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-merge:commandnoexist');
+    var result = shell.exec('grunt abideMerge:commandnoexist');
     test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
     test.done();
   },
   testTemplateNoExist: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-merge:templatenoexist');
+    var result = shell.exec('grunt abideMerge:templatenoexist');
     test.ok(contains('Fatal error: template file "tests/tmp/noexist.pot" does not exist', result.output));
     test.done();
   },

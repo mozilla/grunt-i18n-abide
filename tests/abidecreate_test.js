@@ -10,13 +10,13 @@ exports.create = {
   },
   testCommandNoExist: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-create:commandnoexist');
+    var result = shell.exec('grunt abideCreate:commandnoexist');
     test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
     test.done();
   },
   testTemplateNoExist: function(test) {
     test.expect(1);
-    var result = shell.exec('grunt abide-create:templatenoexist');
+    var result = shell.exec('grunt abideCreate:templatenoexist');
     test.ok(contains('Fatal error: template file "tests/tmp/noexist.pot" does not exist', result.output));
     test.done();
   },

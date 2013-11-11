@@ -24,20 +24,20 @@ grunt.loadNpmTasks('grunt-i18n-abide');
 
 ## The tasks
 
-* abide-extract
-* abide-create
-* abide-merge
-* abide-compile
+* abideExtract
+* abideCreate
+* abideMerge
+* abideCompile
 
-## The `abide-extract` task
+## The `abideExtract` task
 
 ### Overview
-In your project's Gruntfile, add a section named `abide-extract` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abideExtract` to the data object passed into `grunt.initConfig()`.
 
 This example show two targets for extracting strings from JS and HTML. They both use the same destination.
 
 ```js
-  'abide-extract': {
+  abideExtract: {
     js: {
       src: 'lib/**/*.js',
       dest: 'locale/templates/LC_MESSAGES/messages.pot',
@@ -89,14 +89,14 @@ Default value: `true`
 
 Whether to sort extracted strings.
 
-## The `abide-create` task
+## The `abideCreate` task
 
 ### Overview
-In your project's Gruntfile, add a section named `abide-create` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abideCreate` to the data object passed into `grunt.initConfig()`.
 
 ### Options
 ```js
-  'abide-create': {
+  abideCreate: {
     default: { // Target name.
       options: {
         template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
@@ -127,16 +127,16 @@ Default value: `locale`
 The base locale directory.
 
 
-## The `abide-merge` task
+## The `abideMerge` task
 
 ### Overview
-In your project's Gruntfile, add a section named `abide-merge` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abideMerge` to the data object passed into `grunt.initConfig()`.
 
 This command merges newly extracted strings into the locales.
 
 ### Options
 ```js
-  'abide-merge': {
+  abideMerge: {
     default: { // Target name.
       options: {
         template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
@@ -161,16 +161,16 @@ Default value: `locale`
 The base locale directory.
 
 
-## The `abide-compile` task
+## The `abideCompile` task
 
 ### Overview
-In your project's Gruntfile, add a section named `abide-compile` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abideCompile` to the data object passed into `grunt.initConfig()`.
 
 This command can take multiple targets, so you can compile more than one set of files if you want or a mix of mo/JSON.
 
 ### Example Conf
 ```js
-  'abide-compile': {
+  abideCompile: {
     json: {
       dest: '/json/',
       options: {

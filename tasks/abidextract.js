@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 
   'use strict';
 
-  grunt.registerMultiTask('abide-extract', 'Extracts gettext from js, EJS or Jinja (nunjucks).', function () {
+  grunt.registerMultiTask('abideExtract', 'Extracts gettext from js, EJS or Jinja (nunjucks).', function () {
 
     // Defaults.
     var options = this.options({
