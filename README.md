@@ -206,6 +206,61 @@ Default value: `locale`
 The base locale directory.
 
 
+## A complete configuration example
+
+```
+grunt.initConfig({
+  pkg: grunt.file.readJSON('package.json'),
+
+  abideCreate: {
+    default: { // Target name.
+      options: {
+        template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
+        locales: locales,
+        localeDir: 'locale',
+      }
+    }
+  },
+  abideExtract: {
+    js: {
+      src: 'lib/**/*.js',
+      dest: 'locale/templates/LC_MESSAGES/messages.pot',
+      options: {
+        language: 'JavaScript',
+      }
+    },
+    html: {
+      src: 'templates/payments/*.html',
+      dest: 'locale/templates/LC_MESSAGES/messages.pot',
+      options: {
+        language: 'Jinja',
+      }
+    },
+  },
+  abideMerge: {
+    default: { // Target name.
+      options: {
+        template: 'locale/templates/LC_MESSAGES/messages.pot', // (default: 'locale/templates/LC_MESSAGES/messages.pot')
+        localeDir: 'locale',
+      }
+    }
+  },
+  abideCompile: {
+    json: {
+      dest: 'media/locale/',
+      options: {
+        type: 'json',
+      }
+    },
+    mo: {
+      options: {
+        type: 'mo',
+      }
+    }
+  },
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
