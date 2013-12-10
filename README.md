@@ -83,12 +83,6 @@ Default value: `'JavaScript'`
 
 A string value to tell `jsxgettext` what type of code you are extracting strings from.
 
-#### options.sort
-Type: `Boolean`
-Default value: `true`
-
-Whether to sort extracted strings.
-
 ## The `abideCreate` task
 
 ### Overview

@@ -14,7 +14,6 @@ module.exports = function (grunt) {
     // Defaults.
     var options = this.options({
       language: 'JavaScript',
-      sort: false,
       join: true,
     });
 
@@ -61,10 +60,6 @@ module.exports = function (grunt) {
     if (options.keyword) {
       args.push('--keyword');
       args.push(options.keyword);
-    }
-
-    if (options.sort) {
-      args.push('--sort');
     }
 
     if (options.args) {
