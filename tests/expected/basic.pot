@@ -21,4 +21,3 @@ msgstr ""
 #: tests/fixtures/basic2.js:3
 msgid "test6"
 msgstr ""
-

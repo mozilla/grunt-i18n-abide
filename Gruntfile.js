@@ -70,16 +70,8 @@ module.exports = function(grunt) {
           join: true,
         }
       },
-      sorted: {
-        src: 'tests/fixtures/sorted.js',
-        dest: 'tests/tmp/sorted.pot',
-        options: {
-          language: 'JavaScript',
-          sort: true
-        }
-      },
       messages: {
-        src: ['tests/fixtures/sorted.js'],
+        src: ['tests/fixtures/messages.js'],
         dest: 'tests/tmp/messages.pot',
         options: {
           language: 'JavaScript',
@@ -231,7 +223,6 @@ module.exports = function(grunt) {
     'abideExtract:jinjaKeyword',
     'abideExtract:join1',
     'abideExtract:join2',
-    'abideExtract:sorted',
 
     // First extraction of tests/tmp/messages.pot
     'abideExtract:messages',

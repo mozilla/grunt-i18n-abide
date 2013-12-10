@@ -5,4 +5,3 @@ msgstr ""
 #: tests/fixtures/jinja.html:2
 msgid "whatever"
 msgstr ""
-

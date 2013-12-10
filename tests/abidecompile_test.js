@@ -1,32 +1,32 @@
 'use strict';
 
 var grunt = require('grunt');
-var contains = require('./helpers');
 var shell = require('shelljs');
+var utils = require('./utils');
 
 exports.compile = {
   testCommandNoDestJSON: function(test) {
     test.expect(1);
     var result = shell.exec('grunt abideCompile:nodestjson');
-    test.ok(contains('Fatal error: "dest" needs', result.output));
+    test.ok(utils.contains('Fatal error: "dest" needs', result.output));
     test.done();
   },
   testCommandNotExistJSON: function(test) {
     test.expect(1);
     var result = shell.exec('grunt abideCompile:noexistjson');
-    test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
+    test.ok(utils.contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
     test.done();
   },
   testCommandNotExistMo: function(test) {
     test.expect(1);
     var result = shell.exec('grunt abideCompile:noexistmo');
-    test.ok(contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
+    test.ok(utils.contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
     test.done();
   },
   testCommandNonZeroExit: function(test) {
     test.expect(1);
     var result = shell.exec('grunt abideCompile:badcmd');
-    test.ok(contains('Fatal error: Command "tests/bin/sad.sh', result.output));
+    test.ok(utils.contains('Fatal error: Command "tests/bin/sad.sh', result.output));
     test.done();
   },
   testUS: function(test) {
@@ -37,8 +37,8 @@ exports.compile = {
     test.ok(grunt.file.exists(jsFile));
     test.ok(grunt.file.exists(jsonFile));
     test.ok(grunt.file.exists(moFile));
-    test.ok(contains('updated1', grunt.file.read(jsFile)));
-    test.ok(contains('updated1', grunt.file.read(jsonFile)));
+    test.ok(utils.contains('updated1', grunt.file.read(jsFile)));
+    test.ok(utils.contains('updated1', grunt.file.read(jsonFile)));
     test.done();
   },
   testFR: function(test) {
@@ -49,8 +49,8 @@ exports.compile = {
     test.ok(grunt.file.exists(jsFile));
     test.ok(grunt.file.exists(jsonFile));
     test.ok(grunt.file.exists(moFile));
-    test.ok(contains('updated1', grunt.file.read(jsFile)));
-    test.ok(contains('updated1', grunt.file.read(jsonFile)));
+    test.ok(utils.contains('updated1', grunt.file.read(jsFile)));
+    test.ok(utils.contains('updated1', grunt.file.read(jsonFile)));
     test.done();
   },
   testES: function(test) {
@@ -61,8 +61,8 @@ exports.compile = {
     test.ok(grunt.file.exists(jsFile));
     test.ok(grunt.file.exists(jsonFile));
     test.ok(grunt.file.exists(moFile));
-    test.ok(contains('updated1', grunt.file.read(jsFile)));
-    test.ok(contains('updated1', grunt.file.read(jsonFile)));
+    test.ok(utils.contains('updated1', grunt.file.read(jsFile)));
+    test.ok(utils.contains('updated1', grunt.file.read(jsonFile)));
     test.done();
   },
 };
