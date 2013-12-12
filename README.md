@@ -5,8 +5,6 @@
 > Grunt plugin for running `jsxgettext` and `gettext` tools against your codebase. `jsxgettext` extracts strings from your JS
 and template files (EJS/Jinja (nunjucks)) to a pot format.
 
-**Note: It's early days for this, and (despite the docs below) it's not in npm just yet until I iron out any kinks.**
-
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
@@ -264,4 +262,6 @@ Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If 
 
 ## Release History
 
+* 0.0.3: Updated for initial npm release.
+* 0.0.2: Updates related to jsxgettext changes.
 * 0.0.1: Initial version.
