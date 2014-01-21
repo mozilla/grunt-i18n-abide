@@ -262,6 +262,7 @@ Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If 
 
 ## Release History
 
+* 0.0.4: Updated deps.
 * 0.0.3: Updated for initial npm release.
 * 0.0.2: Updates related to jsxgettext changes.
 * 0.0.1: Initial version.
