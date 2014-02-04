@@ -1,8 +1,8 @@
 {
   "name": "grunt-i18n-abide",
   "description": "Grunt plugin for running jsxgettext against your codebase.",
-  "version": "0.0.4",
-  "homepage": "https://github.com/muffinresearch/grunt-i18n-abide",
+  "version": "0.0.5",
+  "homepage": "https://github.com/mozilla/grunt-i18n-abide",
   "author": {
     "name": "Stuart Colville",
     "email": "scolville@mozilla.com",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/muffinresearch/grunt-i18n-abide.git"
+    "url": "git://github.com/mozilla/grunt-i18n-abide.git"
   },
   "bugs": {
-    "url": "https://github.com/muffinresearch/grunt-i18n-abide/issues"
+    "url": "https://github.com/mozilla/grunt-i18n-abide/issues"
   },
   "licenses": [
     {
