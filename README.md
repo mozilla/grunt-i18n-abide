@@ -274,11 +274,14 @@ Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If 
 
 ## Release History
 
+* 0.0.6:
+    * Make abideCreate a noop if locale already exists.
+    * Add createJSFiles option to abideCompile.
 * 0.0.5:
-    * options.locales -> options.languages in abideCreate
+    * options.locales -> options.languages in abideCreate.
     * fix dir creation.
     * Move npm images to mozilla repo.
-    * Update package.json
+    * Update package.json.
 * 0.0.4: Updated deps.
 * 0.0.3: Updated for initial npm release.
 * 0.0.2: Updates related to jsxgettext changes.
