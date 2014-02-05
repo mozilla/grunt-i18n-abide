@@ -152,6 +152,14 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     abideCompile: {
+      nojs: {
+        dest: 'tests/tmp/nojs/',
+        options: {
+          type: 'json',
+          localeDir: 'tests/tmp',
+          createJSFiles: false,
+        }
+      },
       json: {
         dest: 'tests/tmp/json/',
         options: {
@@ -239,6 +247,7 @@ module.exports = function(grunt) {
     // Compile JSON + mo.
     'abideCompile:json',
     'abideCompile:mo',
+    'abideCompile:nojs',
 
     // Test all the things.
     'nodeunit'

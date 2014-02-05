@@ -194,6 +194,14 @@ Type: `String`
 
 The type of compilation `mo` or `json`
 
+#### options.createJSFiles
+Type: `Boolean`
+Default value: `true`
+
+Only relevant when `options.type` is set to `'json'`.
+If `false` the JS files won't be created alongside the json. If you don't need the js
+e.g. you're not producing a client-side app that uses the JS then set this to `false`.
+
 #### options.localeDir
 Type: `String`
 Default value: `locale`
@@ -245,6 +253,7 @@ grunt.initConfig({
       dest: 'media/locale/',
       options: {
         type: 'json',
+        createJSFiles: false, // defaults to true
       }
     },
     mo: {
