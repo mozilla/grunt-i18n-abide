@@ -123,8 +123,21 @@ module.exports = function(grunt) {
           template: 'tests/tmp/messages.pot',
           cmd: 'tests/bin/whatevs.sh',
         }
+      },
+      checkNoModExisting1: {
+        options: {
+          template: 'tests/fixtures/messages.pot',
+          languages: ['en-US'],
+          localeDir: 'tests/tmp',
+        }
+      },
+      checkNoModExisting2: {
+        options: {
+          template: 'tests/fixtures/messages.pot',
+          languages: ['en-US', 'en-GB'],
+          localeDir: 'tests/tmp',
+        }
       }
-
     },
 
     // Configuration to be run (and then tested).

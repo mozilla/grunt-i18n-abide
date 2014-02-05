@@ -115,7 +115,7 @@ Type: `Array`
 
 A list of the language codes you want to create locales for e.g. en-US not en_US.
 
-#### options.template
+#### options.localeDir
 Type: `String`
 Default value: `locale`
 
