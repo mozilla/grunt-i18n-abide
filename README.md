@@ -274,6 +274,9 @@ Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If 
 
 ## Release History
 
+
+* 0.0.7:
+    * Fix bug if createJSFiles is true.
 * 0.0.6:
     * Make abideCreate a noop if locale already exists.
     * Add createJSFiles option to abideCompile.

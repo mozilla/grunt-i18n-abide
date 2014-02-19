@@ -173,6 +173,14 @@ module.exports = function(grunt) {
           createJSFiles: false,
         }
       },
+      yesjs: {
+        dest: 'tests/tmp/yesjs/',
+        options: {
+          type: 'json',
+          localeDir: 'tests/tmp',
+          createJSFiles: true,
+        }
+      },
       json: {
         dest: 'tests/tmp/json/',
         options: {
@@ -261,6 +269,7 @@ module.exports = function(grunt) {
     'abideCompile:json',
     'abideCompile:mo',
     'abideCompile:nojs',
+    'abideCompile:yesjs',
 
     // Test all the things.
     'nodeunit'

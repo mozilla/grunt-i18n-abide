@@ -26,7 +26,10 @@ module.exports = function (grunt) {
   function compileJSON(files, localeDir, dest, options) {
 
     // Default creation of JS files to true.
-    var createJSFiles = typeof options.createJSFiles === 'undefined' ? true : false;
+    var createJSFiles = options.createJSFiles;
+    if (typeof createJSFiles === 'undefined') {
+      createJSFiles = true;
+    }
 
     createLockFile();
 
