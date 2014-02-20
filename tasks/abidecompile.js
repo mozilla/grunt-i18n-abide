@@ -7,6 +7,17 @@ var helpers = require('./lib/helpers');
 var runShellSync = helpers.runShellSync;
 var checkCommand = helpers.checkCommand;
 
+var reserverdWords = [
+  'do', 'if', 'in', 'for', 'let', 'new', 'try', 'var', 'case', 'else', 'enum', 'eval',
+  'false', 'null', 'this', 'true', 'void', 'with', 'break', 'catch', 'class', 'const',
+  'super', 'throw', 'while', 'yield', 'delete', 'export', 'import', 'public', 'return',
+  'static', 'switch', 'typeof', 'default', 'extends', 'finally', 'package', 'private',
+  'continue', 'debugger', 'function', 'arguments', 'interface', 'protected',
+  'implements', 'instanceof'
+];
+
+var basicVarRx = /^[_$a-zA-Z]{1}[a-zA-Z0-9._$]+?$/;
+
 module.exports = function (grunt) {
 
   'use strict';
@@ -23,7 +34,11 @@ module.exports = function (grunt) {
     return grunt.file.isFile(lockFilePath);
   }
 
-  function compileJSON(files, localeDir, dest, options) {
+  function basicVarNameCheck(varName) {
+    return reserverdWords.indexOf(varName) === -1 && basicVarRx.test(varName);
+  }
+
+  function compileJSON(files, localeDir, dest, jsVar, options) {
 
     // Default creation of JS files to true.
     var createJSFiles = options.createJSFiles;
@@ -37,12 +52,12 @@ module.exports = function (grunt) {
       var args = [];
       var dir = path.dirname(pofile);
       var subdir = path.dirname(dir);
-      var lang = path.basename(subdir);
+      var locale = path.basename(subdir);
       var stem = path.basename(pofile, '.po');
 
-      var jsonfile = path.join(dest, lang, stem +'.json');
-      var jsfile = path.join(dest, lang, stem + '.js');
-      grunt.file.mkdir(path.join(dest, lang));
+      var jsonfile = path.join(dest, locale, stem +'.json');
+      var jsfile = path.join(dest, locale, stem + '.js');
+      grunt.file.mkdir(path.join(dest, locale));
 
       var cmd = options.cmd || path.join(__dirname, '../node_modules/po2json/bin/po2json');
 
@@ -55,9 +70,11 @@ module.exports = function (grunt) {
       runShellSync(cmd, args);
 
       if (createJSFiles) {
-        fs.writeFileSync(jsfile, 'var json_locale_data = ');
+        fs.writeFileSync(jsfile, 'window.' + jsVar + ' = ');
         fs.writeFileSync(jsfile, fs.readFileSync(jsonfile), { flag: 'a' });
-        fs.writeFileSync(jsfile, ';', { flag: 'a' });
+        fs.writeFileSync(jsfile, ';\n', { flag: 'a' });
+        fs.writeFileSync(jsfile, 'window.' + jsVar + '.locale = "' + locale + '";\n', { flag: 'a' });
+        fs.writeFileSync(jsfile, 'window.' + jsVar + '.lang = "' + helpers.languageFrom(locale) + '";', { flag: 'a' });
       }
     });
 
@@ -69,12 +86,12 @@ module.exports = function (grunt) {
     var cmd = options.cmd || 'msgfmt';
     checkCommand(cmd);
 
-    files.forEach(function(lang) {
-      var dir = path.dirname(lang);
-      var stem = path.basename(lang, '.po');
+    files.forEach(function(locale) {
+      var dir = path.dirname(locale);
+      var stem = path.basename(locale, '.po');
       var args = ['-o'];
       args.push(path.join(dir, stem + '.mo'));
-      args.push(lang);
+      args.push(locale);
       runShellSync(cmd, args);
     });
 
@@ -88,6 +105,11 @@ module.exports = function (grunt) {
     type = type.toLowerCase();
     var validTypes = ['json', 'mo', 'both'];
     var localeDir = options.localeDir || 'locale';
+    var jsVar = options.jsVar || 'json_locale_data';
+
+    if (!basicVarNameCheck(jsVar)) {
+      grunt.fail.fatal('"' + jsVar + '" is an invalid var name or reserved word.');
+    }
 
     if (!dest && type === 'json') {
       grunt.fail.fatal('"dest" needs to be specifed when type is JSON');
@@ -107,7 +129,7 @@ module.exports = function (grunt) {
 
     switch(type) {
       case 'json':
-        compileJSON(files, localeDir, dest, options);
+        compileJSON(files, localeDir, dest, jsVar, options);
         break;
       case 'mo':
         compileMo(files, options);
