@@ -11,12 +11,6 @@ exports.compile = {
     test.ok(utils.contains('Fatal error: "dest" needs', result.output));
     test.done();
   },
-  testCommandNotExistJSON: function(test) {
-    test.expect(1);
-    var result = shell.exec('grunt abideCompile:noexistjson');
-    test.ok(utils.contains('Fatal error: Command "tests/bin/whatevs.sh" doesn\'t exist!', result.output));
-    test.done();
-  },
   testCommandNotExistMo: function(test) {
     test.expect(1);
     var result = shell.exec('grunt abideCompile:noexistmo');
@@ -42,12 +36,13 @@ exports.compile = {
     test.done();
   },
   testNoJS: function(test) {
-    test.expect(3);
+    test.expect(4);
     var jsFile = 'tests/tmp/nojs/en_US/messages.js';
     var jsonFile = 'tests/tmp/nojs/en_US/messages.json';
     test.ok(!grunt.file.exists(jsFile));
     test.ok(grunt.file.exists(jsonFile));
     test.ok(utils.contains('updated1', grunt.file.read(jsonFile)));
+    test.ok(utils.contains('"messages":', grunt.file.read(jsonFile)));
     test.done();
   },
   testYesJS: function(test) {
@@ -60,15 +55,16 @@ exports.compile = {
     test.done();
   },
   testJSVar: function(test) {
-    test.expect(5);
+    test.expect(6);
     var jsFile = 'tests/tmp/jsvar/en_US/messages.js';
     var jsonFile = 'tests/tmp/jsvar/en_US/messages.json';
     test.ok(grunt.file.exists(jsFile));
     test.ok(grunt.file.exists(jsonFile));
     var jsFileContent = grunt.file.read(jsFile);
+    test.ok(utils.contains('"messages":{', jsFileContent));
     test.ok(utils.contains('window.whatever', jsFileContent));
-    test.ok(utils.contains('window.whatever.lang = "en-US";', jsFileContent));
-    test.ok(utils.contains('window.whatever.locale = "en_US";', jsFileContent));
+    test.ok(utils.contains('"lang":"en-US"', jsFileContent));
+    test.ok(utils.contains('"locale":"en_US"', jsFileContent));
     test.done();
   },
   testFR: function(test) {
