@@ -4,6 +4,7 @@ var lockFilePath = '/tmp/abideCompile.lock';
 var shell = require('shelljs');
 var helpers = require('./lib/helpers');
 
+var po2json = require('po2json');
 var runShellSync = helpers.runShellSync;
 var checkCommand = helpers.checkCommand;
 
@@ -46,6 +47,10 @@ module.exports = function (grunt) {
       createJSFiles = true;
     }
 
+    if (lockFileExists()) {
+      grunt.fail.fatal('Lock files exists. Aborting.');
+    }
+
     createLockFile();
 
     files.forEach(function(pofile){
@@ -59,22 +64,14 @@ module.exports = function (grunt) {
       var jsfile = path.join(dest, locale, stem + '.js');
       grunt.file.mkdir(path.join(dest, locale));
 
-      var cmd = options.cmd || path.join(__dirname, '../node_modules/po2json/bin/po2json');
-
-      checkCommand(cmd);
-
-      args.push(pofile);
-      args.push(jsonfile);
-
-      // Create json file.
-      runShellSync(cmd, args);
+      var json = po2json.parseFileSync(pofile, { stringify: true });
+      var result = '{"messages":' + json + '}';
+      fs.writeFileSync(jsonfile, result, {});
 
       if (createJSFiles) {
-        fs.writeFileSync(jsfile, 'window.' + jsVar + ' = ');
-        fs.writeFileSync(jsfile, fs.readFileSync(jsonfile), { flag: 'a' });
-        fs.writeFileSync(jsfile, ';\n', { flag: 'a' });
-        fs.writeFileSync(jsfile, 'window.' + jsVar + '.locale = "' + locale + '";\n', { flag: 'a' });
-        fs.writeFileSync(jsfile, 'window.' + jsVar + '.lang = "' + helpers.languageFrom(locale) + '";', { flag: 'a' });
+        fs.writeFileSync(jsfile, 'window.' + jsVar + ' = {"messages":' + json + ',');
+        fs.writeFileSync(jsfile, '"locale":"' + locale + '",', { flag: 'a' });
+        fs.writeFileSync(jsfile, '"lang":"' + helpers.languageFrom(locale) + '"}', { flag: 'a' });
       }
     });
 

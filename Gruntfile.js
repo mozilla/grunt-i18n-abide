@@ -228,14 +228,6 @@ module.exports = function(grunt) {
           localeDir: 'tests/tmp',
         }
       },
-      noexistjson: {
-        dest: 'tests/tmp/json/',
-        options: {
-          type: 'json',
-          cmd: 'tests/bin/whatevs.sh',
-          localeDir: 'tests/tmp',
-        }
-      },
       badcmd: {
         options: {
           type: 'mo',
