@@ -181,6 +181,33 @@ module.exports = function(grunt) {
           createJSFiles: true,
         }
       },
+      jsvar: {
+        dest: 'tests/tmp/jsvar/',
+        options: {
+          type: 'json',
+          localeDir: 'tests/tmp',
+          createJSFiles: true,
+          jsVar: 'whatever',
+        }
+      },
+      badjsvar: {
+        dest: 'tests/tmp/badjsvar/',
+        options: {
+          type: 'json',
+          localedir: 'tests/tmp',
+          createjsfiles: true,
+          jsVar: 'try', // reserved word.
+        }
+      },
+      badjsvar2: {
+        dest: 'tests/tmp/badjsvar2/',
+        options: {
+          type: 'json',
+          localedir: 'tests/tmp',
+          createjsfiles: true,
+          jsVar: '15643785', // starts with number.
+        }
+      },
       json: {
         dest: 'tests/tmp/json/',
         options: {
@@ -270,6 +297,7 @@ module.exports = function(grunt) {
     'abideCompile:mo',
     'abideCompile:nojs',
     'abideCompile:yesjs',
+    'abideCompile:jsvar',
 
     // Test all the things.
     'nodeunit'

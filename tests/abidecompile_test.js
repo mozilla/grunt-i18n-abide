@@ -59,6 +59,18 @@ exports.compile = {
     test.ok(utils.contains('updated1', grunt.file.read(jsonFile)));
     test.done();
   },
+  testJSVar: function(test) {
+    test.expect(5);
+    var jsFile = 'tests/tmp/jsvar/en_US/messages.js';
+    var jsonFile = 'tests/tmp/jsvar/en_US/messages.json';
+    test.ok(grunt.file.exists(jsFile));
+    test.ok(grunt.file.exists(jsonFile));
+    var jsFileContent = grunt.file.read(jsFile);
+    test.ok(utils.contains('window.whatever', jsFileContent));
+    test.ok(utils.contains('window.whatever.lang = "en-US";', jsFileContent));
+    test.ok(utils.contains('window.whatever.locale = "en_US";', jsFileContent));
+    test.done();
+  },
   testFR: function(test) {
     test.expect(5);
     var jsFile = 'tests/tmp/json/fr/messages.js';
@@ -81,6 +93,18 @@ exports.compile = {
     test.ok(grunt.file.exists(moFile));
     test.ok(utils.contains('updated1', grunt.file.read(jsFile)));
     test.ok(utils.contains('updated1', grunt.file.read(jsonFile)));
+    test.done();
+  },
+  testBadJSVar: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abideCompile:badjsvar');
+    test.ok(utils.contains('is an invalid var name', result.output));
+    test.done();
+  },
+  testBadJSVar2: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abideCompile:badjsvar2');
+    test.ok(utils.contains('is an invalid var name', result.output));
     test.done();
   },
 };
