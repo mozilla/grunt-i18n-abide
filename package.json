@@ -31,7 +31,8 @@
   "dependencies": {
     "jsxgettext": "~0.3.9",
     "shelljs": "~0.2.6",
-    "po2json": "~0.2.3"
+    "po2json": "~0.2.3",
+    "i18n-abide": "0.0.17"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
