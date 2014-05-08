@@ -282,6 +282,10 @@ Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If 
 
 ## Release History
 
+* 0.0.10:
+    * Use localeFrom and languageFrom from i18n-abide
+    * Update jsxgettext 0.4.0 -> 0.4.2
+    * Update i18n-abide 0.0.17 -> 0.0.19
 * 0.0.9:
     * Use pretty json for readability.
 * 0.0.8:
