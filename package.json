@@ -29,10 +29,10 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "jsxgettext": "0.4.2",
-    "shelljs": "0.2.6",
+    "i18n-abide": "0.0.19",
+    "jsxgettext": "0.4.3",
     "po2json": "0.2.3",
-    "i18n-abide": "0.0.19"
+    "shelljs": "0.3.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
