@@ -35,19 +35,20 @@
     "i18n-abide": "0.0.17"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
+    "grunt": "~0.4.5",
     "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.1"
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.3.3"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
   "keywords": [
+    "gettext",
+    "grunt",
     "gruntplugin",
-    "l10n",
     "i18n",
     "i18n-abide",
-    "gettext"
+    "l10n"
   ]
 }
