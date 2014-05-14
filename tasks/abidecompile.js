@@ -27,6 +27,12 @@ module.exports = function (grunt) {
   'use strict';
 
   function createLockFile() {
+    // #24 abidecompile on windows fails
+    var dirName = path.dirname(lockFilePath);
+    if (!grunt.file.isDir(dirName)) {
+      fs.mkdirSync(dirName);
+    }
+
     return fs.openSync(lockFilePath, 'w');
   }
 
