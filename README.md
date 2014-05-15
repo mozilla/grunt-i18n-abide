@@ -10,7 +10,7 @@ and template files (EJS/Jinja (nunjucks)) to a pot format.
 
 ## Upgrade notes
 
-Version 0.0.20 of `i18n-abide` has changed how it handles locales with script subtags. E.g. `sr_LATN` now becomes `sr_Latn`. In other words locales with script subtags are now formatted so the initial character of the subtag is capitalized and the remainder is lower-case. If you're using i18n-abide >= 0.0.20 rename any locales from `xx_XXXX` to `xx_Xxxx`. If you're using 0.0.20 of `i18n-abide` you should also upgrade to `grunt-i18n-abide` >= 0.0.11.
+Version 0.0.20 of `i18n-abide` has changed how it handles locales with script subtags. E.g. `sr_LATN` now becomes `sr_Latn`. In other words locales with script subtags are now formatted so the initial character of the subtag is capitalized and the remainder is lower-case. If you're using `i18n-abide` >= 0.0.20 rename any locales from `xx_XXXX` to `xx_Xxxx`. If you're using 0.0.20 of `i18n-abide` you should also upgrade to `grunt-i18n-abide` >= 0.0.11.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
