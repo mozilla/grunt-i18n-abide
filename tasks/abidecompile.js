@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var os = require('os');
 
 var po2json = require('po2json');
 var shell = require('shelljs');
@@ -7,7 +8,7 @@ var i18n = require('i18n-abide');
 
 var helpers = require('./lib/helpers');
 
-var lockFilePath = '/tmp/abideCompile.lock';
+var lockFilePath = path.join(os.tmpdir(), 'abideCompile.lock');
 var runShellSync = helpers.runShellSync;
 var checkCommand = helpers.checkCommand;
 
@@ -27,12 +28,6 @@ module.exports = function (grunt) {
   'use strict';
 
   function createLockFile() {
-    // #24 abidecompile on windows fails
-    var dirName = path.dirname(lockFilePath);
-    if (!grunt.file.isDir(dirName)) {
-      fs.mkdirSync(dirName);
-    }
-
     return fs.openSync(lockFilePath, 'w');
   }
 
