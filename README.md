@@ -286,6 +286,8 @@ Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If 
 
 ## Release History
 
+* 0.0.12
+    * Fix lockfile path on windows (thanks @harcogijsbers)
 * 0.0.11
     * Update i18n-abide 0.0.19 -> 0.0.20
 * 0.0.10:
