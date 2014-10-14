@@ -28,7 +28,8 @@ module.exports = function (grunt) {
   'use strict';
 
   function createLockFile() {
-    return fs.openSync(lockFilePath, 'w');
+    var fd = fs.openSync(lockFilePath, 'w');
+    fs.closeSync(fd);
   }
 
   function removeLockFile() {
