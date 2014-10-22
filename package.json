@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "i18n-abide": "0.0.22",
-    "jsxgettext": "0.4.3",
+    "jsxgettext": "0.5.3",
     "po2json": "0.3.2",
     "shelljs": "0.3.0"
   },
