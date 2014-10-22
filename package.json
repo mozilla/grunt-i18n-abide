@@ -29,7 +29,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "i18n-abide": "0.0.20",
+    "i18n-abide": "0.0.22",
     "jsxgettext": "0.4.3",
     "po2json": "0.2.3",
     "shelljs": "0.3.0"
