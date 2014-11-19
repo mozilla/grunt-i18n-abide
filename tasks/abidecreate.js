@@ -37,7 +37,7 @@ module.exports = function (grunt) {
       // Make the dir for the locale.
       var args = [];
 
-      var filename = path.basename(template,".pot");
+      var filename = path.basename(template, '.pot');
       var outputFile = path.join(baseLocaleDir, locale, 'LC_MESSAGES/' + filename + '.po');
 
       var cmd = options.cmd || 'msginit';
