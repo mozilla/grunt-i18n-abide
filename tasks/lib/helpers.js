@@ -1,7 +1,16 @@
+var fs = require('fs');
+var os = require('os');
+var path = require('path');
 var util = require('util');
 
 var shell = require('shelljs');
 var grunt = require('grunt');
+
+function getLockFilePath(fileName) {
+  return path.join(os.tmpdir(), fileName || 'grunt-i18n-abide.lock');
+}
+
+exports.getLockFileoPath = getLockFilePath;
 
 exports.runShellSync = function runShellSync(cmd, args) {
   args.splice(0, 0, cmd);
@@ -20,4 +29,23 @@ exports.checkCommand = function checkCommand(cmd) {
   if (result.code !== 0) {
     grunt.fail.fatal('Command "' + cmd + '" doesn\'t exist! Maybe you need to install it.');
   }
+};
+
+
+exports.createLockFile = function createLockFile(lockFileName) {
+  var lockFilePath = getLockFilePath(lockFileName);
+  var fd = fs.openSync(lockFilePath, 'w');
+  fs.closeSync(fd);
+};
+
+
+exports.removeLockFile = function removeLockFile(lockFileName) {
+  var lockFilePath = getLockFilePath(lockFileName);
+  return fs.unlink(lockFilePath);
+};
+
+
+exports.lockFileExists = function lockFileExists(lockFileName) {
+  var lockFilePath = getLockFilePath(lockFileName);
+  return grunt.file.isFile(lockFilePath);
 };

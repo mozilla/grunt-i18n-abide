@@ -286,6 +286,12 @@ Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If 
 
 ## Release History
 
+* 0.0.13
+    * Allow custom lockfile name for abideCompile
+    * .po names are based on template name in abideCreate (thanks @andreas-marschke)
+    * Update i18n-abide 0.0.20 -> 0.0.22
+    * Update po2json 0.2.3 -> 0.3.2
+    * Update jsxgettext 0.4.3 -> 0.5.3
 * 0.0.12
     * Fix lockfile path on windows (thanks @harcogijsbers)
 * 0.0.11
