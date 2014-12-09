@@ -218,7 +218,7 @@ module.exports = function(grunt) {
       mo: {
         options: {
           localeDir: 'tests/tmp',
-                     type: 'mo',
+          type: 'mo',
         }
       },
       noexistmo: {
@@ -238,8 +238,25 @@ module.exports = function(grunt) {
       nodestjson: {
         options: {
           type: 'json',
-          cmd: 'tests/bin/sad.sh',
           localeDir: 'tests/tmp',
+        }
+      },
+      // This is run from the test file.
+      customLockFile: {
+        dest: 'tests/tmp/custom-lock/',
+        options: {
+          type: 'json',
+          localeDir: 'tests/tmp',
+          lockFileName: 'custom.lock',
+        }
+      },
+      // This is run from the test file.
+      customLockFileBadName: {
+        dest: 'tests/tmp/custom-lock2/',
+        options: {
+          type: 'json',
+          localeDir: 'tests/tmp',
+          lockFileName: 'back lock na/me',
         }
       },
 

@@ -8,11 +8,11 @@ var i18n = require('i18n-abide');
 
 var helpers = require('./lib/helpers');
 
-var lockFilePath = path.join(os.tmpdir(), 'abideCompile.lock');
 var runShellSync = helpers.runShellSync;
 var checkCommand = helpers.checkCommand;
+var defaultLockFilePath = helpers.defaultLockFilePath;
 
-var reserverdWords = [
+var reservedWords = [
   'do', 'if', 'in', 'for', 'let', 'new', 'try', 'var', 'case', 'else', 'enum', 'eval',
   'false', 'null', 'this', 'true', 'void', 'with', 'break', 'catch', 'class', 'const',
   'super', 'throw', 'while', 'yield', 'delete', 'export', 'import', 'public', 'return',
@@ -27,21 +27,8 @@ module.exports = function (grunt) {
 
   'use strict';
 
-  function createLockFile() {
-    var fd = fs.openSync(lockFilePath, 'w');
-    fs.closeSync(fd);
-  }
-
-  function removeLockFile() {
-    return fs.unlink(lockFilePath);
-  }
-
-  function lockFileExists() {
-    return grunt.file.isFile(lockFilePath);
-  }
-
   function basicVarNameCheck(varName) {
-    return reserverdWords.indexOf(varName) === -1 && basicVarRx.test(varName);
+    return reservedWords.indexOf(varName) === -1 && basicVarRx.test(varName);
   }
 
   function compileJSON(files, localeDir, dest, jsVar, options) {
@@ -52,36 +39,39 @@ module.exports = function (grunt) {
       createJSFiles = true;
     }
 
-    if (lockFileExists()) {
-      grunt.fail.fatal('Lock files exists. Aborting.');
+    if (helpers.lockFileExists(options.lockFileName)) {
+      grunt.fail.fatal('Lock file exists. Aborting!');
+      return;
     }
 
-    createLockFile();
+    helpers.createLockFile(options.lockFileName);
 
-    files.forEach(function(pofile){
-      var args = [];
-      var dir = path.dirname(pofile);
-      var subdir = path.dirname(dir);
-      var locale = path.basename(subdir);
-      var stem = path.basename(pofile, '.po');
+    try {
+      files.forEach(function(pofile){
+        var args = [];
+        var dir = path.dirname(pofile);
+        var subdir = path.dirname(dir);
+        var locale = path.basename(subdir);
+        var stem = path.basename(pofile, '.po');
 
-      var jsonfile = path.join(dest, locale, stem +'.json');
-      var jsfile = path.join(dest, locale, stem + '.js');
-      grunt.file.mkdir(path.join(dest, locale));
+        var jsonfile = path.join(dest, locale, stem +'.json');
+        var jsfile = path.join(dest, locale, stem + '.js');
+        grunt.file.mkdir(path.join(dest, locale));
 
-      var json = po2json.parseFileSync(pofile, { stringify: true, pretty: true });
-      var result = '{\n  "messages": ' + json + '}';
-      fs.writeFileSync(jsonfile, result, {});
+        var json = po2json.parseFileSync(pofile, { stringify: true, pretty: true });
+        var result = '{\n  "messages": ' + json + '}';
+        fs.writeFileSync(jsonfile, result, {});
 
-      if (createJSFiles) {
-        fs.writeFileSync(jsfile, 'window.' + jsVar + ' = {\n');
-        fs.writeFileSync(jsfile, '"messages": ' + json + ',\n', { flag: 'a' });
-        fs.writeFileSync(jsfile, '"locale": "' + locale + '",\n', { flag: 'a' });
-        fs.writeFileSync(jsfile, '"lang": "' + i18n.languageFrom(locale) + '"\n}', { flag: 'a' });
-      }
-    });
-
-    removeLockFile();
+        if (createJSFiles) {
+          fs.writeFileSync(jsfile, 'window.' + jsVar + ' = {\n');
+          fs.writeFileSync(jsfile, '"messages": ' + json + ',\n', { flag: 'a' });
+          fs.writeFileSync(jsfile, '"locale": "' + locale + '",\n', { flag: 'a' });
+          fs.writeFileSync(jsfile, '"lang": "' + i18n.languageFrom(locale) + '"\n}', { flag: 'a' });
+        }
+      });
+    } finally {
+      helpers.removeLockFile(options.lockFileName);
+    }
   }
 
   function compileMo(files, options) {
@@ -96,7 +86,6 @@ module.exports = function (grunt) {
       args.push(locale);
       runShellSync(cmd, args);
     });
-
   }
 
   grunt.registerMultiTask('abideCompile', 'Wraps po2json/ to simplify updating new locales.', function () {
