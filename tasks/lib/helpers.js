@@ -46,7 +46,7 @@ exports.createLockFile = function createLockFile(lockFileName) {
 
 exports.removeLockFile = function removeLockFile(lockFileName) {
   var lockFilePath = getLockFilePath(lockFileName);
-  return fs.unlink(lockFilePath);
+  fs.unlinkSync(lockFilePath);
 };
 
 

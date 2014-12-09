@@ -1,6 +1,8 @@
 'use strict';
 
 var fs = require('fs');
+var os = require('os');
+var path = require('path');
 var grunt = require('grunt');
 var shell = require('shelljs');
 var utils = require('./utils');
@@ -137,6 +139,18 @@ exports.compile = {
     test.expect(1);
     var result = shell.exec('grunt abideCompile:customLockFileBadName');
     test.equal(utils.contains('Invalid lockFileName:', result.output), true);
+    test.done();
+  },
+
+  testCustomLockFileExists: function(test) {
+    test.expect(2);
+    helpers.createLockFile('whatevs.lock');
+    try {
+      test.ok(grunt.file.exists(path.join(os.tmpdir(), 'whatevs.lock')));
+    } finally {
+      helpers.removeLockFile('whatevs.lock');
+    }
+    test.equal(helpers.lockFileExists('whatevs.lock'), false, 'lock file should not exist');
     test.done();
   },
 
