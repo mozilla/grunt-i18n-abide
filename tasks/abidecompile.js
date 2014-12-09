@@ -10,7 +10,6 @@ var helpers = require('./lib/helpers');
 
 var runShellSync = helpers.runShellSync;
 var checkCommand = helpers.checkCommand;
-var defaultLockFilePath = helpers.defaultLockFilePath;
 
 var reservedWords = [
   'do', 'if', 'in', 'for', 'let', 'new', 'try', 'var', 'case', 'else', 'enum', 'eval',
