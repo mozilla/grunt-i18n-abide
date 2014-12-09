@@ -26,9 +26,10 @@ exports.compile = {
   },
 
   testCommandNonZeroExit: function(test) {
-    test.expect(1);
+    test.expect(2);
     var result = shell.exec('grunt abideCompile:badcmd');
     test.ok(utils.contains('exited with a non-zero status', result.output));
+    test.equal(result.code, 1);
     test.done();
   },
 
