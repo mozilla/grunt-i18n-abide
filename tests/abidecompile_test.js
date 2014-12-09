@@ -132,4 +132,12 @@ exports.compile = {
     test.equal(helpers.lockFileExists('custom.lock'), false);
     test.done();
   },
+
+  testCustomLockFileBadName: function(test) {
+    test.expect(1);
+    var result = shell.exec('grunt abideCompile:customLockFileBadName');
+    test.equal(utils.contains('Invalid lockFileName:', result.output), true);
+    test.done();
+  },
+
 };

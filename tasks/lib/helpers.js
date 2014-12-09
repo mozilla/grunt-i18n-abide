@@ -6,7 +6,12 @@ var util = require('util');
 var shell = require('shelljs');
 var grunt = require('grunt');
 
+var lockFileRx = /^[a-z0-9_\-.]+$/;
+
 function getLockFilePath(fileName) {
+  if (!lockFileRx.test(fileName)) {
+    grunt.fail.fatal('Invalid lockFileName: "' + fileName + '" + must match ' + lockFileRx.toString());
+  }
   return path.join(os.tmpdir(), fileName || 'grunt-i18n-abide.lock');
 }
 
