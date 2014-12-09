@@ -22,7 +22,7 @@ exports.extract = {
   testCommandNonZeroExit: function(test) {
     test.expect(1);
     var result = shell.exec('grunt abideExtract:badcmd');
-    test.ok(utils.contains('Fatal error: Command "tests/bin/sad.sh', result.output));
+    test.ok(utils.contains('exited with a non-zero status', result.output));
     test.done();
   },
 

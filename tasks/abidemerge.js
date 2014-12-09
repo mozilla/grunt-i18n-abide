@@ -3,7 +3,6 @@ var shell = require('shelljs');
 var helpers = require('./lib/helpers');
 
 var runShellSync = helpers.runShellSync;
-var checkCommand = helpers.checkCommand;
 
 require('shelljs/global');
 
@@ -38,8 +37,7 @@ module.exports = function (grunt) {
       var dir = path.dirname(locale);
       var stem = path.basename(locale, '.po');
 
-      var cmd = options.cmd || 'msgmerge';
-      checkCommand(cmd);
+      var cmd = helpers.getCommand(options.cmd || 'msgmerge');
 
       args.push('-q');
       args.push('-o');

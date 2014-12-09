@@ -28,12 +28,14 @@ exports.runShellSync = function runShellSync(cmd, args) {
 };
 
 
-exports.checkCommand = function checkCommand(cmd) {
-  // Checks the command exists before running it.
-  var result = shell.exec('bash -c "type -P ' + cmd + ' > /dev/null"');
-  if (result.code !== 0) {
+exports.getCommand = function getCommand(cmd) {
+  // Returns the full path of the command via shell.which or errors if it
+  // doesn't exist.
+  var cmdFullPath = shell.which(cmd);
+  if (cmdFullPath === null) {
     grunt.fail.fatal('Command "' + cmd + '" doesn\'t exist! Maybe you need to install it.');
   }
+  return cmdFullPath;
 };
 
 

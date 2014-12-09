@@ -9,7 +9,6 @@ var i18n = require('i18n-abide');
 var helpers = require('./lib/helpers');
 
 var runShellSync = helpers.runShellSync;
-var checkCommand = helpers.checkCommand;
 
 var reservedWords = [
   'do', 'if', 'in', 'for', 'let', 'new', 'try', 'var', 'case', 'else', 'enum', 'eval',
@@ -74,8 +73,7 @@ module.exports = function (grunt) {
   }
 
   function compileMo(files, options) {
-    var cmd = options.cmd || 'msgfmt';
-    checkCommand(cmd);
+    var cmd = helpers.getCommand(options.cmd || 'msgfmt');
 
     files.forEach(function(locale) {
       var dir = path.dirname(locale);
