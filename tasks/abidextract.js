@@ -16,7 +16,7 @@ module.exports = function (grunt) {
       join: true,
     });
 
-    var cmd = helpers.getCommand(options.cmd || 'jsxgettext');
+    var cmd = helpers.getCommand(options.cmd || path.join(__dirname, '../node_modules/.bin/jsxgettext'));
 
     var args = [];
     var filesSrc = this.filesSrc;
