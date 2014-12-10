@@ -5,23 +5,35 @@
 
 # grunt-i18n-abide
 
-> Grunt plugin for running `jsxgettext` and `gettext` tools against your codebase. `jsxgettext` extracts strings from your JS
-and template files (EJS/Jinja (nunjucks)) to a pot format.
+> Grunt plugin for running `jsxgettext` and `gettext` tools against your
+codebase. `jsxgettext` extracts strings from your JS and template files
+(EJS/Jinja (nunjucks)) to a pot format.
 
 ## Upgrade notes
 
-Version 0.0.20 of `i18n-abide` has changed how it handles locales with script subtags. E.g. `sr_LATN` now becomes `sr_Latn`. In other words locales with script subtags are now formatted so the initial character of the subtag is capitalized and the remainder is lower-case. If you're using `i18n-abide` >= 0.0.20 rename any locales from `xx_XXXX` to `xx_Xxxx`. If you're using 0.0.20 of `i18n-abide` you should also upgrade to `grunt-i18n-abide` >= 0.0.11.
+Version 0.0.20 of `i18n-abide` has changed how it handles locales with
+script subtags. E.g. `sr_LATN` now becomes `sr_Latn`. In other words
+locales with script subtags are now formatted so the initial character
+of the subtag is capitalized and the remainder is lower-case. If you're
+using `i18n-abide` >= 0.0.20 rename any locales from `xx_XXXX` to `xx_Xxxx`.
+If you're using 0.0.20 of `i18n-abide` you should also upgrade to
+`grunt-i18n-abide` >= 0.0.11.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check
+out the [Getting Started](http://gruntjs.com/getting-started) guide, as it
+explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile)
+as well as install and use Grunt plugins. Once you're familiar with that
+process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-i18n-abide --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once the plugin has been installed, it may be enabled inside your
+Gruntfile with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-i18n-abide');
@@ -37,9 +49,11 @@ grunt.loadNpmTasks('grunt-i18n-abide');
 ## The `abideExtract` task
 
 ### Overview
-In your project's Gruntfile, add a section named `abideExtract` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abideExtract` to the
+data object passed into `grunt.initConfig()`.
 
-This example show two targets for extracting strings from JS and HTML. They both use the same destination.
+This example show two targets for extracting strings from JS and HTML.
+They both use the same destination.
 
 ```js
   abideExtract: {
@@ -63,10 +77,13 @@ This example show two targets for extracting strings from JS and HTML. They both
 ### Files
 
 #### src
-Standard grunt files src config allowing a set of paths to make up the list of files that are searched for gettext strings.
+Standard grunt files src config allowing a set of paths to make up the list
+of files that are searched for gettext strings.
 
 #### dest
-Standard grunt files dest config allowing configuration of where the pot file should be created.
+Standard grunt files dest config allowing configuration of where the pot file
+should be created.
+
 Default value: `locale/templates/LC\_MESSAGES/messages.pot`
 
 ### Options
@@ -80,18 +97,21 @@ Join messages that already exist.
 #### options.keyword
 Type: `String`
 
-A way to specify what gettext function you are using e.g. '_' for _('Translate this')
+A way to specify what gettext function you are using e.g. '_' for
+_('Translate this')
 
 #### options.language
 Type: `String`
 Default value: `'JavaScript'`
 
-A string value to tell `jsxgettext` what type of code you are extracting strings from.
+A string value to tell `jsxgettext` what type of code you are
+extracting strings from.
 
 ## The `abideCreate` task
 
 ### Overview
-In your project's Gruntfile, add a section named `abideCreate` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abideCreate` to
+the data object passed into `grunt.initConfig()`.
 
 ### Options
 ```js
@@ -117,7 +137,8 @@ The path to the template pot file strings are extracted to.
 #### options.languages
 Type: `Array`
 
-A list of the language codes you want to create locales for e.g. en-US not en_US.
+A list of the language codes you want to create locales for e.g. en-US not
+en_US.
 
 #### options.localeDir
 Type: `String`
@@ -129,7 +150,8 @@ The base locale directory.
 ## The `abideMerge` task
 
 ### Overview
-In your project's Gruntfile, add a section named `abideMerge` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abideMerge` to the data
+object passed into `grunt.initConfig()`.
 
 This command merges newly extracted strings into the locales.
 
@@ -163,9 +185,11 @@ The base locale directory.
 ## The `abideCompile` task
 
 ### Overview
-In your project's Gruntfile, add a section named `abideCompile` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `abideCompile` to the data
+object passed into `grunt.initConfig()`.
 
-This command can take multiple targets, so you can compile more than one set of files if you want or a mix of mo/JSON.
+This command can take multiple targets, so you can compile more than one set
+of files if you want or a mix of mo/JSON.
 
 ### Example Conf
 ```js
@@ -189,7 +213,8 @@ This command can take multiple targets, so you can compile more than one set of 
 ### Files
 
 #### dest
-Standard grunt files dest config allowing configuration of where the json should end up.
+Standard grunt files dest config allowing configuration of where the json
+should end up.
 
 ### Options
 
@@ -203,22 +228,34 @@ Type: `Boolean`
 Default value: `true`
 
 Only relevant when `options.type` is set to `'json'`.
-If `false` the JS files won't be created alongside the json. If you don't need the js
-e.g. you're not producing a client-side app that uses the JS then set this to `false`.
+If `false` the JS files won't be created alongside the json. If you don't need
+the js e.g. you're not producing a client-side app that uses the JS then set
+this to `false`.
 
 #### options.jsVar
 Type: `String`
 Default value: `json_locale_data`
 
-Allows you to override the JS var used in the JS output. The var is added to the window object.
-So by default you'll end up with window.json_locale_data. This value is crudely validated to
-help ensure you don't use a reserved word or an invalid property name.
+Allows you to override the JS var used in the JS output. The var is added to
+the window object. So by default you'll end up with window.json_locale_data.
+This value is crudely validated to help ensure you don't use a reserved word
+or an invalid property name.
 
 #### options.localeDir
 Type: `String`
 Default value: `locale`
 
 The base locale directory.
+
+#### options.lockFileName
+Type: `String`
+Default value: `grunt-i18n-abide.lock`
+
+An option to customise the lockfile name.
+
+This can be useful if you might be running multiple builds concurrently
+on the same server. Set this to use an environment variable or use a grunt
+cli option so each job has a unique lockfile name.
 
 
 ## A complete configuration example
@@ -278,11 +315,17 @@ grunt.initConfig({
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding
+style. Add unit tests for any new or changed functionality. Lint and test
+your code using [Grunt](http://gruntjs.com/).
 
 ### Where to file bugs
 
-Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools. If there's a problem with how grunt talks to `jsxgettext` or those CLI tools then that's a problem with this package. However if the output is not correct (and it's not related to configuration) please file a bug on the relevant project.
+Bear in mind this code only wraps `jsxgettext` and standard `gettext` tools.
+If there's a problem with how grunt talks to `jsxgettext` or those CLI tools
+then that's a problem with this package. However if the output is not correct
+(and it's not related to configuration) please file a bug on the relevant
+project.
 
 ## Release History
 
