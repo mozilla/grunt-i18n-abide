@@ -5,7 +5,6 @@ var i18n = require('i18n-abide');
 var helpers = require('./lib/helpers');
 
 var runShellSync = helpers.runShellSync;
-var checkCommand = helpers.checkCommand;
 
 
 module.exports = function (grunt) {
@@ -40,15 +39,13 @@ module.exports = function (grunt) {
       var filename = path.basename(template, '.pot');
       var outputFile = path.join(baseLocaleDir, locale, 'LC_MESSAGES/' + filename + '.po');
 
-      var cmd = options.cmd || 'msginit';
-
       // No-op if po already exists.
       if (fs.existsSync(outputFile)) {
         grunt.log.writeln('Locale "' + locale + '" already exists, skipping...');
         return false;
       }
 
-      checkCommand(cmd);
+      var cmd = helpers.getCommand(options.cmd || 'msginit');
 
       // Non-interactive :)
       args.push('--no-translator');

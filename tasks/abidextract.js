@@ -3,7 +3,6 @@ var path = require('path');
 var helpers = require('./lib/helpers');
 
 var runShellSync = helpers.runShellSync;
-var checkCommand = helpers.checkCommand;
 
 module.exports = function (grunt) {
 
@@ -17,9 +16,7 @@ module.exports = function (grunt) {
       join: true,
     });
 
-    var cmd = options.cmd || path.join(__dirname, '../node_modules/.bin/jsxgettext');
-
-    checkCommand(cmd);
+    var cmd = helpers.getCommand(options.cmd || path.join(__dirname, '../node_modules/.bin/jsxgettext'));
 
     var args = [];
     var filesSrc = this.filesSrc;

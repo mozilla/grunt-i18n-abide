@@ -329,6 +329,8 @@ project.
 
 ## Release History
 
+* 0.0.14
+    * Use shell.which() to determine the path to commands.
 * 0.0.13
     * Allow custom lockfile name for abideCompile
     * .po names are based on template name in abideCreate (thanks @andreas-marschke)
