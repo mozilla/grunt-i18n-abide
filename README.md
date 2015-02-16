@@ -329,45 +329,4 @@ project.
 
 ## Release History
 
-* 0.0.14
-    * Use shell.which() to determine the path to commands.
-* 0.0.13
-    * Allow custom lockfile name for abideCompile
-    * .po names are based on template name in abideCreate (thanks @andreas-marschke)
-    * Update i18n-abide 0.0.20 -> 0.0.22
-    * Update po2json 0.2.3 -> 0.3.2
-    * Update jsxgettext 0.4.3 -> 0.5.3
-* 0.0.12
-    * Fix lockfile path on windows (thanks @harcogijsbers)
-* 0.0.11
-    * Update i18n-abide 0.0.19 -> 0.0.20
-* 0.0.10:
-    * Use localeFrom and languageFrom from i18n-abide.
-    * Update jsxgettext 0.4.0 -> 0.4.2
-    * Update i18n-abide 0.0.17 -> 0.0.19
-    * Update shelljs 0.2.6 -> 0.3.0
-    * Update dev deps.
-* 0.0.9:
-    * Use pretty json for readability.
-* 0.0.8:
-    * Provide configuration for jsVar in js output.
-    * Output lang/locale for js output.
-    * Update po2json + jsxgettext.
-* 0.0.7:
-    * Fix bug if createJSFiles is true.
-* 0.0.6:
-    * Make abideCreate a noop if locale already exists.
-    * Add createJSFiles option to abideCompile.
-* 0.0.5:
-    * options.locales -> options.languages in abideCreate.
-    * fix dir creation.
-    * Move npm images to mozilla repo.
-    * Update package.json.
-* 0.0.4:
-    * Updated deps.
-* 0.0.3:
-    * Updated for initial npm release.
-* 0.0.2:
-    * Updates related to jsxgettext changes.
-* 0.0.1:
-    * Initial version.
+See https://github.com/mozilla/grunt-i18n-abide/releases
