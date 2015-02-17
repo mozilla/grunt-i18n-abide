@@ -38,7 +38,8 @@ module.exports = function (grunt) {
     }
 
     if (helpers.lockFileExists(options.lockFileName)) {
-      grunt.fail.fatal('Lock file exists. Aborting!');
+      var lockFilePath = helpers.getLockFilePath(options.lockFileName);
+      grunt.fail.fatal('Lock file exists at: ' + lockFilePath + ' Aborting!');
       return;
     }
 

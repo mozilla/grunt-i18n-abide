@@ -259,7 +259,15 @@ module.exports = function(grunt) {
           lockFileName: 'back lock na/me',
         }
       },
-
+      // This is run from the test file.
+      customLockFile2: {
+        dest: 'tests/tmp/whatevs-lock/',
+        options: {
+          type: 'json',
+          localeDir: 'tests/tmp',
+          lockFileName: 'whatevs.lock',
+        }
+      },
     },
 
     // Unit tests.
