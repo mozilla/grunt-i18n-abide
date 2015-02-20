@@ -15,7 +15,7 @@ function getLockFilePath(fileName) {
   return path.join(os.tmpdir(), fileName || 'grunt-i18n-abide.lock');
 }
 
-exports.getLockFileoPath = getLockFilePath;
+exports.getLockFilePath = getLockFilePath;
 
 exports.runShellSync = function runShellSync(cmd, args) {
   args.splice(0, 0, cmd);

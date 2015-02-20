@@ -144,10 +144,13 @@ exports.compile = {
   },
 
   testCustomLockFileExists: function(test) {
-    test.expect(2);
+    test.expect(4);
     helpers.createLockFile('whatevs.lock');
     try {
       test.ok(grunt.file.exists(path.join(os.tmpdir(), 'whatevs.lock')));
+      var result = shell.exec('grunt abideCompile:customLockFile2');
+      test.equal(utils.contains('Lock file exists', result.output), true);
+      test.equal(utils.contains('whatevs.lock', result.output), true);
     } finally {
       helpers.removeLockFile('whatevs.lock');
     }
