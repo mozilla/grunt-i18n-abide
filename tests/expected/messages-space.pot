@@ -1,0 +1,11 @@
+#: tests/fixtures/some dir/space.js:1
+msgid "test1"
+msgstr ""
+
+#: tests/fixtures/some dir/space.js:2
+msgid "test2"
+msgstr ""
+
+#: tests/fixtures/some dir/space.js:3
+msgid "test3"
+msgstr ""

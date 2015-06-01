@@ -4,6 +4,7 @@ var path = require('path');
 var util = require('util');
 
 var shell = require('shelljs');
+var shellescape = require('shell-escape');
 var grunt = require('grunt');
 
 var lockFileRx = /^[a-z0-9_\-.]+$/;
@@ -19,8 +20,8 @@ exports.getLockFilePath = getLockFilePath;
 
 exports.runShellSync = function runShellSync(cmd, args) {
   args.splice(0, 0, cmd);
-  var command = args.join(' ');
-  var result = shell.exec(args.join(' '));
+  var command = shellescape(args);
+  var result = shell.exec(command);
   if (result.code !== 0) {
     grunt.fail.fatal('Command "' + command + '" exited with a non-zero status');
   }

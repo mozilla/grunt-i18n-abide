@@ -59,4 +59,12 @@ exports.extract = {
     test.done();
   },
 
+  testExtractionSpacePaths: function(test) {
+    var created = 'tests/tmp/messages-space.pot';
+    var expected = 'tests/expected/messages-space.pot';
+    test.ok(grunt.file.exists(created));
+    utils.comparePotFiles(expected, created, test);
+    test.done();
+  },
+
 };

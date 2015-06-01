@@ -3,6 +3,7 @@ var shell = require('shelljs');
 var helpers = require('./lib/helpers');
 
 var runShellSync = helpers.runShellSync;
+var shellescape = require('shell-escape');
 
 require('shelljs/global');
 
@@ -51,7 +52,7 @@ module.exports = function (grunt) {
       moveArgs.push(path.join(dir, stem + '.po.tmp'));
       moveArgs.push(path.join(dir, stem + '.po'));
 
-      shell.exec(moveArgs.join(' '));
+      shell.exec(shellescape(moveArgs));
 
     });
 
