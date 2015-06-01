@@ -63,4 +63,10 @@ exports.create = {
     test.done();
   },
 
+  testSpacePath: function(test) {
+    test.expect(1);
+    var created = 'tests/tmp/space path/en_GB/LC_MESSAGES/messages-space.po';
+    test.ok(grunt.file.exists(created));
+    test.done();
+  },
 };

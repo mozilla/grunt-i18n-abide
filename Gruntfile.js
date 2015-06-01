@@ -100,6 +100,13 @@ module.exports = function(grunt) {
           cmd: 'tests/bin/whatevs.sh',
         }
       },
+      spacepath: {
+        src: ['tests/fixtures/some dir/space.js'],
+        dest: 'tests/tmp/messages-space.pot',
+        options: {
+          language: 'JavaScript',
+        }
+      },
     },
 
     // Configuration to be run (and then tested).
@@ -136,6 +143,13 @@ module.exports = function(grunt) {
           template: 'tests/fixtures/messages.pot',
           languages: ['en-US', 'en-GB'],
           localeDir: 'tests/tmp',
+        }
+      },
+      spacepath: {
+        options: {
+          template: 'tests/tmp/messages-space.pot',
+          languages: ['en-US', 'en-GB'],
+          localeDir: 'tests/tmp/space path/',
         }
       }
     },
@@ -268,6 +282,15 @@ module.exports = function(grunt) {
           lockFileName: 'whatevs.lock',
         }
       },
+      // This is run from the test file.
+      spacepath: {
+        dest: 'tests/tmp/space path/',
+        options: {
+          type: 'json',
+          localeDir: 'tests/tmp/space path',
+        }
+      },
+
     },
 
     // Unit tests.
@@ -296,12 +319,14 @@ module.exports = function(grunt) {
     'abideExtract:jinjaKeyword',
     'abideExtract:join1',
     'abideExtract:join2',
+    'abideExtract:spacepath',
 
     // First extraction of tests/tmp/messages.pot
     'abideExtract:messages',
 
     // Create the locales.
     'abideCreate:default',
+    'abideCreate:spacepath',
 
     // Updated extraction of tests/tmp/messages.pot
     'abideExtract:updated',
@@ -315,6 +340,7 @@ module.exports = function(grunt) {
     'abideCompile:nojs',
     'abideCompile:yesjs',
     'abideCompile:jsvar',
+    'abideCompile:spacepath',
 
     // Test all the things.
     'nodeunit'
