@@ -23,9 +23,7 @@ module.exports = function (grunt) {
         fs.statSync( _path );
         cachedPath = _path;
         return _path;
-        }catch(err){
-          grunt.log.ok(err);
-      }
+        }catch(err){}
     }
     grunt.fail.fatal('Cannot find jsxgettext.');
   };
