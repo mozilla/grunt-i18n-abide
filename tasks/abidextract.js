@@ -9,21 +9,20 @@ var cmdPaths = [ '../../.bin/jsxgettext', '../node_modules/.bin/jsxgettext' ];
 module.exports = function (grunt) {
 
   'use strict';
-  
+
   var cachedPath = null;
   var getPath = function(){
-    var idx, lpaths, _path;
-    if( cachedPath ){
+    var _path;
+    if (cachedPath) {
       return cachedPath;
     }
-    lpaths = cmdPaths.length;
-    for( idx = 0; idx < lpaths; idx++ ){
+    for (var idx = 0; idx < cmdPaths.length; idx++) {
       _path = path.join(__dirname, cmdPaths[idx]);
-      try{
-        fs.statSync( _path );
+      try {
+        fs.statSync(_path);
         cachedPath = _path;
         return _path;
-        }catch(err){}
+      } catch(err) {}
     }
     grunt.fail.fatal('Cannot find jsxgettext.');
   };
@@ -35,7 +34,7 @@ module.exports = function (grunt) {
       language: 'JavaScript',
       join: true,
     });
-    
+
     var cmd = helpers.getCommand(options.cmd || getPath() );
 
     var args = [];
