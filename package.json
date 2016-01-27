@@ -1,7 +1,7 @@
 {
   "name": "grunt-i18n-abide",
   "description": "Grunt plugin for running jsxgettext against your codebase.",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "homepage": "https://github.com/mozilla/grunt-i18n-abide",
   "author": {
     "name": "Stuart Colville",
