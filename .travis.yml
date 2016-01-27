@@ -17,7 +17,7 @@ deploy:
   provider: npm
   email: addons-dev-automation+npm@mozilla.com
   api_key:
-    secure: eaHxNEy0RXK4An1vqZo2x0X/zSAwEQeMgtt82G+NffJIesM9023AZ+N0ZITfSzKz9JpM0+H0O12vm4ze/6jEooax1Bp39dgde8a3ahCZQ187Se4ZUg3k6SF4SEO9DfCYu/TSJCNr1N3B/FycgCSui4kqcCLNlzRtrRdKi5Rl0tQ=
+    secure: DJSkrR8SbXzzJo2K49512PO6+hh0+VO1UjBKGIf6FOZNXQnI6k80towzGePo1ZMrDJs5rtuEqLcSry21XUf+lVIzqpY5nLrJ7p/kHuLoT0ryp+cbToDJqo/59vuj5Rfjn6/sC6FMYph+1ROvJuHUFyignHc6O9wOxYQppWOw0S0=
   on:
     tags: true
     repo: mozilla/grunt-i18n-abide
