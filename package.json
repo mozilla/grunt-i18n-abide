@@ -31,7 +31,7 @@
   "dependencies": {
     "i18n-abide": "0.0.25",
     "jsxgettext": "0.8.2",
-    "po2json": "0.4.1",
+    "po2json": "0.4.2",
     "shell-escape": "0.2.0",
     "shelljs": "0.6.0"
   },
