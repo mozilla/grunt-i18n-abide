@@ -1,7 +1,7 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 [![Build Status](https://travis-ci.org/mozilla/grunt-i18n-abide.svg?branch=master)](https://travis-ci.org/mozilla/grunt-i18n-abide)
 [![NPM version](https://badge.fury.io/js/grunt-i18n-abide.svg)](http://badge.fury.io/js/grunt-i18n-abide)
 [![Dependency Status](https://david-dm.org/mozilla/grunt-i18n-abide.svg?theme=shields.io)](https://david-dm.org/mozilla/grunt-i18n-abide)
-
 
 # grunt-i18n-abide
 
