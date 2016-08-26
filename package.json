@@ -33,7 +33,7 @@
     "jsxgettext": "0.8.2",
     "po2json": "0.4.1",
     "shell-escape": "0.2.0",
-    "shelljs": "0.6.0"
+    "shelljs": "0.7.4"
   },
   "devDependencies": {
     "grunt": "1.0.1",
